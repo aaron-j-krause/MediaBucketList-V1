@@ -40,5 +40,5 @@ describe('app backend testing', function() {
 			expect(res).to.have.status(200);
 			done();
 		});
-	})
+	});
 });
