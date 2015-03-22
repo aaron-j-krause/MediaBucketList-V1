@@ -3,6 +3,7 @@
 var starter = function(testing, callback) {
 	var express = require('express');
 	var Sequelize = require('sequelize');
+
 	var app = express();
 
 	var sequelize = new Sequelize(testing ? 'backendTest': 'apptest', null, null, {
@@ -14,11 +15,12 @@ var starter = function(testing, callback) {
 
 	//routes
 	var userRouter = express.Router();
+	var mediaRouter = express.Router();
 	require('./lib/routers/userRouter')(userRouter, userModel);
-	//var movieRouter = express.Router();
-	//var tvRouter = express.Router();
+	require('./lib/routers/mediaRouter')(mediaRouter);
 
 	app.use('/api', userRouter);
+	app.use('/api', mediaRouter);
 
 	sequelize.sync({force: testing}).then(function() {
 		var port = process.env.PORT || 3000;
