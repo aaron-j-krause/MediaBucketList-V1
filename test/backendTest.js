@@ -32,6 +32,17 @@ describe('app backend testing', function() {
 		});
 	});
 
+	it('should get user info', function(done) {
+		chai.request(server)
+		.get('/api/user/test')
+		.end(function(err, res) {
+			expect(err).to.eql(null);
+			expect(res).to.have.status(200);
+			expect(res.body).to.have.property('username');
+			done()
+		});
+	});
+
 	it('should delete a user', function(done) {
 		chai.request(server)
 		.del('/api/user/test')
