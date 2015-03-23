@@ -1,6 +1,9 @@
 module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-simple-mocha');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-browserify');
 
 	grunt.initConfig({
 		jshint: {
@@ -17,6 +20,34 @@ module.exports = function(grunt) {
 				src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'index.js']
 			}
 		},
+
+		copy: {
+			build: {
+				expand: true,
+				cwd: 'app/',
+				src:['**/*.html', '**/*.css'],
+				dest: 'build/',
+				flatten: false,
+				filter: 'isFile'
+			}
+		},
+
+		clean: {
+			build: {
+				src: ['/build']
+			},
+			options: {
+				transform: ['reactify']
+			}
+		},
+
+		browserify: {
+			dev: {
+				src: ['app/**/*.js'],
+				dest: 'build/bundle.js'
+			}
+		},
+
 		simplemocha: {
 			all: {
 				src: ['test/**/*.js']
@@ -24,6 +55,7 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.registerTask('build', ['clean', 'copy', 'browserify'])
 	grunt.registerTask('test', ['jshint:dev', 'simplemocha:all']);
 	grunt.registerTask('default', ['test']);
 };
