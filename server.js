@@ -11,13 +11,13 @@ var starter = function(testing, callback) {
 		port: 5432
 	});
 
-	var userModel = require('./lib/models/userModel')(sequelize);
+	var userModel = require('./lib/models/user-model')(sequelize);
 
 	//routes
 	var userRouter = express.Router();
 	var mediaRouter = express.Router();
-	require('./lib/routers/userRouter')(userRouter, userModel);
-	require('./lib/routers/mediaRouter')(mediaRouter);
+	require('./lib/routers/user-router')(userRouter, userModel);
+	require('./lib/routers/media-router')(mediaRouter);
 
 	app.use('/api', userRouter);
 	app.use('/api', mediaRouter);
