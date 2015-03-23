@@ -1,6 +1,6 @@
 # finalProject
 
-To run this, you have to add keys.js to the root folder with the following content:
+To run this, you have to add constants.js to the ./lib folder with the following content:
 
 ```
 module.exports = {

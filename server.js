@@ -6,7 +6,7 @@ var starter = function(testing, callback) {
 
 	var app = express();
 
-	var sequelize = new Sequelize(testing ? 'backendTest': 'apptest', null, null, {
+	var sequelize = new Sequelize(testing ? 'mediabucketlist-test': 'apptest', 'mediabucketlist', 'changemenow', {
 		dialect: 'postgres',
 		port: 5432
 	});
