@@ -1,4 +1,4 @@
-create role mediabucketlist with login encrypted password 'changemenow';
-create database "mediabucketlist-test" with owner mediabucketlist;
-create database "mediabucketlist-dev" with owner mediabucketlist;
-create database "mediabucketlist-prod" with owner mediabucketlist;
+create role :username with login encrypted password :pwd;
+create database "mediabucketlist-test" with owner :username;
+create database "mediabucketlist-dev" with owner :username;
+create database "mediabucketlist-prod" with owner :username;
