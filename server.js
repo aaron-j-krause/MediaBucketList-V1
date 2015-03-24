@@ -21,6 +21,7 @@ var starter = function(testing, callback) {
 
 	app.use('/api', userRouter);
 	app.use('/api', mediaRouter);
+	app.use(express.static(__dirname + '/build'));
 
 	sequelize.sync({force: testing}).then(function() {
 		var port = process.env.PORT || 3000;

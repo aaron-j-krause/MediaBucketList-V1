@@ -35,9 +35,6 @@ module.exports = function(grunt) {
 		clean: {
 			build: {
 				src: ['/build']
-			},
-			options: {
-				transform: ['reactify']
 			}
 		},
 
@@ -45,6 +42,9 @@ module.exports = function(grunt) {
 			dev: {
 				src: ['app/**/*.js'],
 				dest: 'build/bundle.js'
+			},
+			options: {
+				transform: ['reactify']
 			}
 		},
 
