@@ -22,4 +22,3 @@ $ psql postgres -f ./scripts/mediabucketlist-setup-db.sql -v username=<user name
 - File Names use "-" to separate words.
 - All lowercase for file names.
 - All lowercase for URLs.
-s
