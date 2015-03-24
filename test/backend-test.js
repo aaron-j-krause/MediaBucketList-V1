@@ -18,11 +18,11 @@ describe('app backend testing', function() {
 	it('should work', function(done) {
 		done();
 	});
-/*
+
 	it('should create a user', function(done) {
 		chai.request(server)
 		.post('/api/user')
-		.send({"username":"test", "firstname":"test", "lastname":"last", "email":"test@test.com","password":"test"})
+		.send({"username":"test", "displayName":"test"})
 		.end(function(err, res) {
 			console.dir(res.body);
 			expect(err).to.eql(null);
@@ -52,5 +52,4 @@ describe('app backend testing', function() {
 			done();
 		});
 	});
-*/
 });
