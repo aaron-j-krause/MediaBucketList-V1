@@ -34,7 +34,7 @@ module.exports = function(grunt) {
 
 		clean: {
 			build: {
-				src: ['/build']
+				src: ['build']
 			}
 		},
 
