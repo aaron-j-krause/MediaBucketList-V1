@@ -13,14 +13,17 @@ var starter = function(testing, callback) {
 
 	var userModel = require('./lib/models/user-model')(sequelize);
 
+	var auth_handler = require('./lib/auth/passport.js')(app, userModel, testing);
+
 	//routes
 	var userRouter = express.Router();
 	var mediaRouter = express.Router();
 	require('./lib/routers/user-router')(userRouter, userModel);
 	require('./lib/routers/media-router')(mediaRouter);
 
-	app.use('/api', userRouter);
-	app.use('/api', mediaRouter);
+	// all routes under /api require authentication
+	app.use('/api', auth_handler, userRouter);
+	app.use('/api', auth_handler, mediaRouter);
 	app.use(express.static(__dirname + '/build'));
 
 	sequelize.sync({force: testing}).then(function() {
