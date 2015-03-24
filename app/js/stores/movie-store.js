@@ -39,4 +39,6 @@ Dispatcher.register(function(payload) {
   MovieStore.emitChange();
 
   return true
-})
+});
+
+module.exports = MovieStore;
