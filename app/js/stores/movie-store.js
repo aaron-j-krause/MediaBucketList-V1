@@ -2,6 +2,7 @@ var Dispatcher = require('../dispatcher/dispatcher');
 var constants = require('../constants')
 var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
+var MovieAPI = require('../../../lib/movie-db/movie-db')
 
 var movies = [];
 
@@ -30,6 +31,13 @@ Dispatcher.register(function(payload) {
   var handlers = {
     TEST_ACTION: function() {
       console.log('hello');
+    },
+    MOVIE_GET_BY_NAME: function() {
+      MovieAPI.searchMoviesByName(data, function(err, res) {
+        if (err) return console.log(err);
+        movies = res.results;
+        MovieStore.emitChange();
+      })
     }
   };
 
