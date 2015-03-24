@@ -55,7 +55,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('build', ['clean', 'copy', 'browserify'])
+	grunt.registerTask('build', ['clean', 'copy', 'browserify']);
 	grunt.registerTask('test', ['jshint:dev', 'simplemocha:all']);
 	grunt.registerTask('default', ['test']);
 };
