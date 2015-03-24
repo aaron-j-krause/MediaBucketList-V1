@@ -14,6 +14,7 @@ module.exports = React.createClass({
   getInitialState: function() {
     return getControllerState();
   },
+
   componentDidMount: function(){
     MovieStore.addChangeListener(this._onChange);
     this._onChange();
@@ -33,7 +34,6 @@ module.exports = React.createClass({
         <MovieList movieData={this.state.movieData} />
         <MovieSearchForm/>
       </main>
-
     )
   }
 });

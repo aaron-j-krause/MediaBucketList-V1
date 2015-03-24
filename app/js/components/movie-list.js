@@ -5,8 +5,7 @@ var Movie = require('./movie');
 module.exports = React.createClass({
 
   render: function() {
-    var moviesFiltered = objectFilter(this.props.movieData, ['title', 'id'])
-    var movies = moviesFiltered.map(function(movie) {
+    var movies = this.props.movieData.map(function(movie) {
       return (
         <Movie key={movie.id} movieData={movie}/>
       )

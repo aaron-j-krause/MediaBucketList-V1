@@ -32,8 +32,25 @@ Dispatcher.register(function(payload) {
     TEST_ACTION: function() {
       console.log('hello');
     },
+
     MOVIE_GET_BY_NAME: function() {
       MovieAPI.searchMoviesByName(data, function(err, res) {
+        if (err) return console.log(err);
+        movies = res.results;
+        MovieStore.emitChange();
+      })
+    },
+
+    MOVIE_GET_BY_PERSON_NAME: function() {
+      MovieAPI.searchByPeople(data, function(err, res) {
+        if (err) return console.log(err);
+        movies = res.results;
+        MovieStore.emitChange();
+      })
+    },
+
+    TV_GET_BY_NAME: function() {
+      MovieAPI.searchTvShowsByName(data, function(err, res) {
         if (err) return console.log(err);
         movies = res.results;
         MovieStore.emitChange();
