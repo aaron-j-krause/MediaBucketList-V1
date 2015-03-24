@@ -6,5 +6,26 @@ module.exports = {
       actionType: 'TEST_ACTION',
       data: data
     });
+  },
+
+  getMoviesByName: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'MOVIE_GET_BY_NAME',
+      data: data
+    })
+  },
+
+  getMoviesByPersonName: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'MOVIE_GET_BY_PERSON_NAME',
+      data: data
+    })
+  },
+
+  getTvShowsByName: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'TV_GET_BY_NAME',
+      data: data
+    })
   }
 }
