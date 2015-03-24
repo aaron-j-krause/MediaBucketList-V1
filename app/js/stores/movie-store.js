@@ -76,6 +76,7 @@ Dispatcher.register(function(payload) {
     SEARCHLIST_SAVE: function() {
       console.log('THIS IS WHERE WE WILL SAVE THE LIST', data)
       list = [];
+      movies = [];
       MovieStore.emitChange();
     }
   };
