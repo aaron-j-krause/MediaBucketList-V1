@@ -12,13 +12,12 @@ var starter = function(testing, callback) {
 	});
 
 	var userModel = require('./lib/models/user-model')(sequelize);
-
 	var auth_handler = require('./lib/auth/passport.js')(app, userModel, testing);
 
 	//routes
 	var userRouter = express.Router();
 	var mediaRouter = express.Router();
-	require('./lib/routers/user-router')(userRouter, userModel);
+	require('./lib/routers/user-router')(userRouter, userModel, testing);
 	require('./lib/routers/media-router')(mediaRouter);
 
 	// all routes under /api require authentication
