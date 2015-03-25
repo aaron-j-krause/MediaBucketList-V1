@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         options: {
           jshintrc: '.jshintrc'
         },
-				src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'index.js', 'app/**.*.js']
+				src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'index.js', 'app/**/*.js']
 			}
 		},
 
