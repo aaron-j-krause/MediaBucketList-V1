@@ -1,4 +1,4 @@
-var keyMirror = require('react/lib/keymirror');
+var keyMirror = require('react/lib/keyMirror');
 
 module.exports = keyMirror({
   MOVIE_GET_BY_NAME: null,
