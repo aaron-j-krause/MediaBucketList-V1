@@ -24,7 +24,6 @@ describe('app backend testing', function() {
 		.post('/api/user')
 		.send({"username":"test", "displayName":"test"})
 		.end(function(err, res) {
-			console.dir(res.body);
 			expect(err).to.eql(null);
 			expect(res).to.have.status(200);
 			expect(res.body).to.have.property('username');
@@ -43,7 +42,7 @@ describe('app backend testing', function() {
 		});
 	});
 
-	it('should delete a user', function(done) {
+	it('should delete the user', function(done) {
 		chai.request(server)
 		.del('/api/user/test')
 		.end(function(err, res) {
