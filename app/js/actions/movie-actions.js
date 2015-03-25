@@ -15,9 +15,16 @@ module.exports = {
     });
   },
 
-  getMoviesByPersonName: function(data) {
+  getMovieById: function(data) {
     Dispatcher.handleAction({
-      actionType: 'MOVIE_GET_BY_PERSON_NAME',
+      actionType: 'MOVIE_GET_BY_ID',
+      data: data
+    })
+  },
+
+  getPeople: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'PERSON_GET_BY_NAME',
       data: data
     });
   },
@@ -27,6 +34,13 @@ module.exports = {
       actionType: 'TV_GET_BY_NAME',
       data: data
     });
+  },
+
+  getMoviesByPersonId: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'MOVIE_GET_BY_PERSON_ID',
+      data: data
+    })
   },
 
   searchListModifyItem: function(data) {

@@ -12,7 +12,7 @@ module.exports = React.createClass({
 
   render: function() {
     var movieData = this.props.movieData;
-    var title = movieData.title? movieData.title : movieData.name
+    var title = movieData.title ? movieData.title : movieData.name;
     return (
       <label><input name={title} value={title}
         onChange={this.handleChange} type="checkbox"/>{title}<br/></label>

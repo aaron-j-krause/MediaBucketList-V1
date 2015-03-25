@@ -3,17 +3,28 @@ var constants = require('../constants')
 var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
 var MovieAPI = require('../../../lib/movie-db/movie-db')
+var objectFilter = require('../../../lib/movie-db/object-filter')
 
 var movies = [];
+var movieListType = 'movies';
 var list = [];
+var session = true;
 
 var MovieStore = _.assign({}, EventEmitter.prototype, {
   getMovies: function() {
     return movies;
   },
 
+  getListType: function() {
+    return movieListType
+  },
+
   getList: function() {
     return list;
+  },
+
+  getSession: function() {
+    return session;
   },
 
   emitChange: function() {
@@ -46,10 +57,31 @@ Dispatcher.register(function(payload) {
       })
     },
 
-    MOVIE_GET_BY_PERSON_NAME: function() {
+    MOVIE_GET_BY_ID: function() {
+      MovieAPI.searchByMovieId(data, function(err, res) {
+        if (err) return console.log(err);
+        console.log(res);
+        movieListType = 'actors';
+        movies = res.cast;
+        MovieStore.emitChange();
+      })
+    },
+
+    MOVIE_GET_BY_PERSON_ID: function() {
+      MovieAPI.searchByPersonId(data, function(err, res) {
+        if (err) return console.log(err);
+        console.log('PERSON SEARCH', res);
+        movies = res.cast;
+        movieListType = 'searchlist';
+        MovieStore.emitChange();
+      })
+    },
+
+    PERSON_GET_BY_NAME: function() {
       MovieAPI.searchByPeople(data, function(err, res) {
         if (err) return console.log(err);
         movies = res.results;
+        console.log(movies);
         MovieStore.emitChange();
       })
     },
@@ -74,7 +106,9 @@ Dispatcher.register(function(payload) {
     },
 
     SEARCHLIST_SAVE: function() {
-      console.log('THIS IS WHERE WE WILL SAVE THE LIST', data)
+      var m = objectFilter(data, ['title', 'id', 'poster_path', 'watched'])
+      console.log('THIS IS WHERE WE WILL SAVE THE LIST', m);
+      movieListType = 'movies';
       list = [];
       movies = [];
       MovieStore.emitChange();
