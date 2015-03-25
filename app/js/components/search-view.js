@@ -7,11 +7,13 @@ var SearchList = require('./search-list');
 module.exports = React.createClass({
   handleMovieClick: function(event) {
     event.preventDefault();
-    console.log(this.props.listType);
+
     var handlers = {
       movies: MovieActions.getMovieById,
-      actors: MovieActions.getMoviesByPersonId
-    }
+      actors: MovieActions.getMoviesByPersonId,
+      tv: MovieActions.getSeasonByShowId
+    };
+
     handlers[this.props.listType](event.target.name);
   },
 
