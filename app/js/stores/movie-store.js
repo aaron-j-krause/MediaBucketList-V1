@@ -1,19 +1,31 @@
 var Dispatcher = require('../dispatcher/dispatcher');
-var constants = require('../constants')
+var constants = require('../constants');
 var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
-var MovieAPI = require('../../../lib/movie-db/movie-db')
+var MovieAPI = require('../../../lib/movie-db/movie-db');
+var objectFilter = require('../../../lib/movie-db/object-filter');
+var MovieActions = require('../actions/movie-actions');
 
 var movies = [];
+var listType = 'movies';
 var list = [];
+var session = true;
 
 var MovieStore = _.assign({}, EventEmitter.prototype, {
   getMovies: function() {
     return movies;
   },
 
+  getListType: function() {
+    return listType;
+  },
+
   getList: function() {
     return list;
+  },
+
+  getSession: function() {
+    return session;
   },
 
   emitChange: function() {
@@ -25,7 +37,7 @@ var MovieStore = _.assign({}, EventEmitter.prototype, {
   },
 
   removeChangeListener: function(callback) {
-    this.removeListener('change', callback)
+    this.removeListener('change', callback);
   }
 });
 
@@ -43,23 +55,69 @@ Dispatcher.register(function(payload) {
         if (err) return console.log(err);
         movies = res.results;
         MovieStore.emitChange();
-      })
+      });
     },
 
-    MOVIE_GET_BY_PERSON_NAME: function() {
+    MOVIE_GET_BY_ID: function() {
+      MovieAPI.searchByMovieId(data, function(err, res) {
+        if (err) return console.log(err);
+        listType = 'actors';
+        movies = res.cast;
+        MovieStore.emitChange();
+      });
+    },
+
+    MOVIE_GET_BY_PERSON_ID: function() {
+      MovieAPI.searchByPersonId(data, function(err, res) {
+        if (err) return console.log(err);
+        movies = res.cast;
+        listType = 'searchlist';
+        MovieStore.emitChange();
+      });
+    },
+
+    PERSON_GET_BY_NAME: function() {
       MovieAPI.searchByPeople(data, function(err, res) {
         if (err) return console.log(err);
         movies = res.results;
         MovieStore.emitChange();
-      })
+      });
     },
 
     TV_GET_BY_NAME: function() {
       MovieAPI.searchTvShowsByName(data, function(err, res) {
         if (err) return console.log(err);
         movies = res.results;
+        listType = 'tv';
         MovieStore.emitChange();
-      })
+      });
+    },
+
+    TV_GET_SEASON: function() {
+      MovieAPI.searchTvById(data, function(err, res) {
+        if (err) return console.log(err);
+        movies = [];
+        for (var i = 0; i < res.seasons.length; i++) {
+          movies.push({
+            show: {
+              name: res.name,
+              id: res.id
+            },
+            name: i,
+            id: i,
+            watched: false
+          });
+        }
+        listType = 'searchlist';
+        MovieStore.emitChange();
+      });
+    },
+
+    TV_GET_BY_ID: function() {
+      MovieAPI.searchTvById(data, function(err, res) {
+        if (err) return console.log(err);
+        console.log('TVID', res);
+      });
     },
 
     SEARCHLIST_MODIFY: function() {
@@ -74,7 +132,8 @@ Dispatcher.register(function(payload) {
     },
 
     SEARCHLIST_SAVE: function() {
-      console.log('THIS IS WHERE WE WILL SAVE THE LIST', data)
+      console.log('THIS IS WHERE WE WILL SAVE THE LIST', data);
+      listType = 'movies';
       list = [];
       movies = [];
       MovieStore.emitChange();
@@ -85,7 +144,7 @@ Dispatcher.register(function(payload) {
 
   handlers[actionType]();
 
-  return true
+  return true;
 });
 
 module.exports = MovieStore;

@@ -1,15 +1,15 @@
 var React = require('react');
-var MovieSearchForm = require('./movie-search-form');
 var MovieStore = require('../stores/movie-store');
 var MovieActions = require('../actions/movie-actions');
-var MovieList = require('./movie-list')
-var SearchList = require('./search-list')
+var SearchView = require('./search-view');
 
-var getControllerState = function(){
+var getControllerState = function() {
   return {
     movieData: MovieStore.getMovies(),
-    searchList: MovieStore.getList()
-  }
+    searchList: MovieStore.getList(),
+    loggedIn: MovieStore.getSession(),
+    listType: MovieStore.getListType()
+  };
 };
 
 module.exports = React.createClass({
@@ -17,7 +17,11 @@ module.exports = React.createClass({
     return getControllerState();
   },
 
-  componentDidMount: function(){
+  handleMovieClick: function(event) {
+    event.preventDefault();
+  },
+
+  componentDidMount: function() {
     MovieStore.addChangeListener(this._onChange);
     this._onChange();
   },
@@ -27,15 +31,15 @@ module.exports = React.createClass({
   },
 
   _onChange: function() {
-    this.setState(getControllerState())
+    this.setState(getControllerState());
   },
 
   render: function(){
     return (
       <main>
-        <SearchList searchData={this.state.searchList} movieData={this.state.movieData} />
-        <MovieSearchForm/>
+        <SearchView movieData={this.state.movieData} listType={this.state.listType}
+          searchData={this.state.searchList} />
       </main>
-    )
+    );
   }
 });
