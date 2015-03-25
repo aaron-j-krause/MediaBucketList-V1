@@ -9,7 +9,7 @@ var getControllerState = function() {
     searchList: MovieStore.getList(),
     loggedIn: MovieStore.getSession(),
     listType: MovieStore.getListType()
-  }
+  };
 };
 
 module.exports = React.createClass({
@@ -19,11 +19,9 @@ module.exports = React.createClass({
 
   handleMovieClick: function(event) {
     event.preventDefault();
-
   },
 
   componentDidMount: function() {
-
     MovieStore.addChangeListener(this._onChange);
     this._onChange();
   },
@@ -33,7 +31,7 @@ module.exports = React.createClass({
   },
 
   _onChange: function() {
-    this.setState(getControllerState())
+    this.setState(getControllerState());
   },
 
   render: function(){
@@ -42,6 +40,6 @@ module.exports = React.createClass({
         <SearchView movieData={this.state.movieData} listType={this.state.listType}
           searchData={this.state.searchList} />
       </main>
-    )
+    );
   }
 });

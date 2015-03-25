@@ -28,17 +28,16 @@ module.exports = React.createClass({
     } else {
       MovieActions.getTvShowsByName(this.state.name);
     }
-    MovieActions.getTvShowById(456);
 
     this.setState({
       name: '',
       formType: 'Movie'
-    })
+    });
   },
 
   render: function() {
     var submitButton = 'Find ' + this.state.formType;
-    var placeholder = 'Search by ' + this.state.formType + ' name'
+    var placeholder = 'Search by ' + this.state.formType + ' name';
     return (
       <form onSubmit={this.handleSubmit}>
         <label> By Movie
@@ -54,4 +53,4 @@ module.exports = React.createClass({
       </form>
     );
   }
-})
+});

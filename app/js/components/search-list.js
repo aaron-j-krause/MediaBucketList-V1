@@ -9,9 +9,8 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    console.log('SEARCH DATA', this.props.searchData);
     var searchItems = this.props.movieData.map(function(movie) {
-      return (<SearchListCheckbox movieData={movie} key={movie.id}/>)
+      return (<SearchListCheckbox movieData={movie} key={movie.id}/>);
     });
 
     return (
@@ -21,4 +20,4 @@ module.exports = React.createClass({
       </form>
     );
   }
-})
+});

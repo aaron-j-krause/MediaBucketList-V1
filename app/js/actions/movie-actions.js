@@ -19,7 +19,7 @@ module.exports = {
     Dispatcher.handleAction({
       actionType: 'MOVIE_GET_BY_ID',
       data: data
-    })
+    });
   },
 
   getPeople: function(data) {
@@ -47,14 +47,14 @@ module.exports = {
     Dispatcher.handleAction({
       actionType: 'TV_GET_SEASON',
       data: data
-    })
+    });
   },
 
   getMoviesByPersonId: function(data) {
     Dispatcher.handleAction({
       actionType: 'MOVIE_GET_BY_PERSON_ID',
       data: data
-    })
+    });
   },
 
   searchListModifyItem: function(data) {
@@ -68,6 +68,6 @@ module.exports = {
     Dispatcher.handleAction({
       actionType: 'SEARCHLIST_SAVE',
       data: data
-    })
+    });
   }
-}
+};
