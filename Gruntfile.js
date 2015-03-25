@@ -10,16 +10,10 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		jshint: {
 			dev: {
-				options: {
-					node: true,
-					globals: {
-						describe: true,
-						it: true,
-						before: true,
-						after: true
-					}
-				},
-				src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'index.js']
+        options: {
+          jshintrc: '.jshintrc'
+        },
+				src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'index.js', 'app/**/*.js']
 			}
 		},
 
@@ -78,8 +72,7 @@ module.exports = function(grunt) {
     }
 	});
 
-	grunt.registerTask('build', ['clean', 'copy', 'browserify', 'sass']);
-  grunt.registerTask('appdev', ['clean', 'copy', 'browserify']);
+	grunt.registerTask('build', ['jshint', 'clean', 'copy', 'browserify', 'sass']);
 	grunt.registerTask('test', ['jshint:dev', 'simplemocha:all']);
 	grunt.registerTask('default', ['test']);
 };
