@@ -1,3 +1,4 @@
+'use strict';
 var React = require('react');
 var MovieActions = require('../actions/movie-actions');
 
@@ -7,11 +8,11 @@ module.exports = React.createClass({
       movieName: '',
       personName: '',
       tvName: ''
-    }
+    };
   },
 
   handleChange: function(event) {
-    var field = event.target
+    var field = event.target;
     var state = this.state;
     state[field.name] = field.value;
     this.setState(state);
@@ -55,6 +56,6 @@ module.exports = React.createClass({
         <input type="submit" name="movie-search" value="Search"/>
       </form>
     </div>
-    )
+    );
   }
 });

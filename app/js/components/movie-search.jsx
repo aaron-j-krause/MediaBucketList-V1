@@ -1,3 +1,4 @@
+'use strict';
 var React = require('react');
 var MovieActions = require('../actions/movie-actions');
 
@@ -6,7 +7,7 @@ module.exports = React.createClass({
     return {
       name: '',
       formType: 'Movie'
-    }
+    };
   },
 
   handleChange: function(event){

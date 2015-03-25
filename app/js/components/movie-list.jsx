@@ -1,6 +1,6 @@
+'use strict';
 var React = require('react');
-var objectFilter = require('../../../lib/movie-db/object-filter');
-var Movie = require('./movie');
+var Movie = require('./movie.jsx');
 
 module.exports = React.createClass({
 
@@ -8,12 +8,12 @@ module.exports = React.createClass({
     var movies = this.props.movieData.map(function(movie) {
       return (
         <Movie key={movie.id} movieData={movie}/>
-      )
-    })
+      );
+    });
     return (
       <ul>
         {movies}
       </ul>
     );
   }
-})
+});

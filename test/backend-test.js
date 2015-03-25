@@ -2,7 +2,7 @@
 
 var chai = require('chai');
 var chaihttp = require('chai-http');
-var expect = chai.expect;
+var expect = chai.expect;//jshint ignore:line
 chai.use(chaihttp);
 
 describe('app backend testing', function() {

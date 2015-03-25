@@ -1,5 +1,6 @@
+'use strict';
 module.exports = function(grunt) {
-	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-jsxhint');
   grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-simple-mocha');
 	grunt.loadNpmTasks('grunt-contrib-clean');
@@ -13,7 +14,7 @@ module.exports = function(grunt) {
         options: {
           jshintrc: '.jshintrc'
         },
-				src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'index.js', 'app/**/*.js']
+				src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'index.js', 'app/**/*.js', 'app/**/*.jsx']
 			}
 		},
 
@@ -36,7 +37,7 @@ module.exports = function(grunt) {
 
 		browserify: {
 			dev: {
-				src: ['app/**/*.js'],
+				src: ['app/**/*.js', 'app/**/*.jsx'],
 				dest: 'build/bundle.js'
 			},
 			options: {

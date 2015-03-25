@@ -1,5 +1,6 @@
+'use strict';
 var React = require('react');
-var SearchListCheckbox = require('./search-list-checkbox');
+var SearchListCheckbox = require('./search-list-checkbox.jsx');
 var MovieActions = require('../actions/movie-actions');
 
 module.exports = React.createClass({
