@@ -2,8 +2,13 @@
 var React = require('react');
 var SearchListCheckbox = require('./search-list-checkbox.jsx');
 var MovieActions = require('../actions/movie-actions');
+var UserActions = require('../actions/user-actions');
 
 module.exports = React.createClass({
+  componentDidMount: function() {
+    UserActions.isValid(true);
+  },
+
   handleSubmit: function(event) {
     event.preventDefault();
     MovieActions.searchListSaveNew(this.props.searchData);

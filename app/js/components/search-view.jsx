@@ -1,8 +1,9 @@
 'use strict';
 var React = require('react');
+var MovieActions = require('../actions/movie-actions');
+var UserActions = require('../actions/user-actions');
 var MovieSearch = require('./movie-search.jsx');
 var AnchorList = require('./anchor-list.jsx');
-var MovieActions = require('../actions/movie-actions');
 var SearchList = require('./search-list.jsx');
 
 module.exports = React.createClass({
@@ -16,6 +17,10 @@ module.exports = React.createClass({
     };
 
     handlers[this.props.listType](event.target.name);
+  },
+
+  componentDidMount: function() {
+    UserActions.isValid(true);
   },
 
   render: function() {

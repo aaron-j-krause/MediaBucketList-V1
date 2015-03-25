@@ -38,13 +38,19 @@ Dispatcher.register(function(payload) {
       //data.username = usernamed, data.password = password;
       console.log('sign in made it', data);
       signedIn = true;
+      UserStore.emitChange();
+    },
+
+    USER_CHECK_VALID: function() {
+      //TODO call to check valid user
+      if(!data) signedIn = false;
+      UserStore.emitChange();
     }
   };
 
   if (!handlers[actionType]) return true;
 
   handlers[actionType]();
-  UserStore.emitChange();
 
   return true;
 });
