@@ -23,7 +23,7 @@ module.exports = React.createClass({
     var handlers = {
       movieName: MovieActions.getMoviesByName,
       tvName: MovieActions.getTvShowsByName,
-      personName: MovieActions.getMoviesByPersonName
+      personName: MovieActions.getPeople
     };
 
     handlers[event.target.name](state[event.target.name]);
