@@ -36,6 +36,20 @@ module.exports = {
     });
   },
 
+  getTvShowById: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'TV_GET_BY_ID',
+      data: data
+    });
+  },
+
+  getSeasonByShowId: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'TV_GET_SEASON',
+      data: data
+    })
+  },
+
   getMoviesByPersonId: function(data) {
     Dispatcher.handleAction({
       actionType: 'MOVIE_GET_BY_PERSON_ID',

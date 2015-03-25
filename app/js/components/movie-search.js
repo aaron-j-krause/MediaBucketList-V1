@@ -4,14 +4,14 @@ var MovieActions = require('../actions/movie-actions');
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      movieName: '',
+      name: '',
       formType: 'Movie'
     }
   },
 
   handleChange: function(event){
     var state = this.state;
-    state.movieName = event.target.value;
+    state.name = event.target.value;
     this.setState(state);
   },
 
@@ -24,13 +24,14 @@ module.exports = React.createClass({
   handleSubmit: function(event) {
     event.preventDefault();
     if (this.state.formType === 'Movie') {
-      MovieActions.getMoviesByName(this.state.movieName);
+      MovieActions.getMoviesByName(this.state.name);
     } else {
-      MovieActions.getTvShowsByName(this.state.movieName);
+      MovieActions.getTvShowsByName(this.state.name);
     }
+    MovieActions.getTvShowById(456);
 
     this.setState({
-      movieName: '',
+      name: '',
       formType: 'Movie'
     })
   },
@@ -47,7 +48,7 @@ module.exports = React.createClass({
         <label> By TV Show
           <input type="radio" name="searchSelect" value="TV Show" onChange={this.changeFormType}/>
         </label>
-        <input type="text" onChange={this.handleChange} value={this.state.movieName}
+        <input type="text" onChange={this.handleChange} value={this.state.name}
           placeholder={placeholder}/>
         <input type="submit" value={submitButton}/>
       </form>

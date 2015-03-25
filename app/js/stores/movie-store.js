@@ -4,9 +4,10 @@ var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
 var MovieAPI = require('../../../lib/movie-db/movie-db')
 var objectFilter = require('../../../lib/movie-db/object-filter')
+var MovieActions = require('../actions/movie-actions')
 
 var movies = [];
-var movieListType = 'movies';
+var listType = 'movies';
 var list = [];
 var session = true;
 
@@ -16,7 +17,7 @@ var MovieStore = _.assign({}, EventEmitter.prototype, {
   },
 
   getListType: function() {
-    return movieListType
+    return listType
   },
 
   getList: function() {
@@ -61,7 +62,7 @@ Dispatcher.register(function(payload) {
       MovieAPI.searchByMovieId(data, function(err, res) {
         if (err) return console.log(err);
         console.log(res);
-        movieListType = 'actors';
+        listType = 'actors';
         movies = res.cast;
         MovieStore.emitChange();
       })
@@ -72,7 +73,7 @@ Dispatcher.register(function(payload) {
         if (err) return console.log(err);
         console.log('PERSON SEARCH', res);
         movies = res.cast;
-        movieListType = 'searchlist';
+        listType = 'searchlist';
         MovieStore.emitChange();
       })
     },
@@ -90,7 +91,35 @@ Dispatcher.register(function(payload) {
       MovieAPI.searchTvShowsByName(data, function(err, res) {
         if (err) return console.log(err);
         movies = res.results;
+        listType = 'tv';
         MovieStore.emitChange();
+      })
+    },
+
+    TV_GET_SEASON: function() {
+      MovieAPI.searchTvById(data, function(err, res) {
+        if (err) return console.log(err);
+        movies = [];
+        for (var i = 0; i < res.seasons.length; i++) {
+          movies.push({
+            show: {
+              name: res.name,
+              id: res.id
+            },
+            name: i,
+            id: i,
+            watched: false
+          })
+        }
+        listType = 'searchlist';
+        MovieStore.emitChange();
+      })
+    },
+
+    TV_GET_BY_ID: function() {
+      MovieAPI.searchTvById(data, function(err, res) {
+        if (err) return console.log(err);
+        console.log('TVID', res);
       })
     },
 
@@ -106,9 +135,9 @@ Dispatcher.register(function(payload) {
     },
 
     SEARCHLIST_SAVE: function() {
-      var m = objectFilter(data, ['title', 'id', 'poster_path', 'watched'])
-      console.log('THIS IS WHERE WE WILL SAVE THE LIST', m);
-      movieListType = 'movies';
+      //var m = objectFilter(data, ['title', 'id', 'poster_path', 'watched'])
+      console.log('THIS IS WHERE WE WILL SAVE THE LIST', data);
+      listType = 'movies';
       list = [];
       movies = [];
       MovieStore.emitChange();
