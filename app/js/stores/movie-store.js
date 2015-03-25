@@ -1,10 +1,9 @@
+'use strict';
 var Dispatcher = require('../dispatcher/dispatcher');
 var constants = require('../constants');
 var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
 var MovieAPI = require('../../../lib/movie-db/movie-db');
-var objectFilter = require('../../../lib/movie-db/object-filter');
-var MovieActions = require('../actions/movie-actions');
 
 var movies = [];
 var listType = 'movies';

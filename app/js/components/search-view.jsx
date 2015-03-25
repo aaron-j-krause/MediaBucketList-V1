@@ -1,8 +1,9 @@
+'use strict';
 var React = require('react');
-var MovieSearch = require('./movie-search');
-var AnchorList = require('./anchor-list');
+var MovieSearch = require('./movie-search.jsx');
+var AnchorList = require('./anchor-list.jsx');
 var MovieActions = require('../actions/movie-actions');
-var SearchList = require('./search-list');
+var SearchList = require('./search-list.jsx');
 
 module.exports = React.createClass({
   handleMovieClick: function(event) {

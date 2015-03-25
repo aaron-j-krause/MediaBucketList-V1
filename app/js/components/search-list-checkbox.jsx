@@ -1,3 +1,4 @@
+'use strict';
 var React = require('react');
 var MovieActions = require('../actions/movie-actions');
 
