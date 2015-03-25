@@ -35,6 +35,8 @@ Dispatcher.register(function(payload) {
 
   var handlers = {
     USER_SIGN_IN: function() {
+      //data.username = usernamed, data.password = password;
+      console.log('sign in made it', data);
       signedIn = true;
     }
   };
