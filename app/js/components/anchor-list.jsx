@@ -1,3 +1,4 @@
+'use strict';
 var React = require('react');
 
 module.exports = React.createClass({
@@ -9,7 +10,7 @@ module.exports = React.createClass({
         <li key={movie.id}>
           <a name={movie.id} href="#" onClick={this.props.handleClick}>{movie[title]}</a>
         </li>
-      )
+      );
     }.bind(this));
 
     return (

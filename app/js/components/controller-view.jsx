@@ -1,7 +1,7 @@
+'use strict';
 var React = require('react');
 var MovieStore = require('../stores/movie-store');
-var MovieActions = require('../actions/movie-actions');
-var SearchView = require('./search-view');
+var SearchView = require('./search-view.jsx');
 
 var getControllerState = function() {
   return {
