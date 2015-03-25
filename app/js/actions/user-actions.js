@@ -8,4 +8,11 @@ module.exports = {
       data: data
     });
   },
+
+  isValid: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'USER_CHECK_VALID',
+      data: data
+    });
+  }
 };

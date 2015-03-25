@@ -1,7 +1,12 @@
 'use strict';
 var React = require('react');
+var UserActions = require('../actions/user-actions');
 
 module.exports = React.createClass({
+  componentDidMount: function() {
+    UserActions.isValid(true);
+  },
+
   render: function() {
     var movieData = this.props.movieData;
     var title = movieData[0] && movieData[0].title ? 'title' : 'name';

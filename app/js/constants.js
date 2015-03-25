@@ -14,5 +14,6 @@ module.exports = keyMirror({
   SEARCHLIST_SAVE: null,
   TEST_ACTION: null,
   //user constants
-  USER_SIGN_IN: null
+  USER_SIGN_IN: null,
+  USER_CHECK_VALID: null
 });
