@@ -1,14 +1,17 @@
 'use strict';
 var React = require('react');
 var MovieStore = require('../stores/movie-store');
+var UserStore = require('../stores/user-store');
 var SearchView = require('./search-view.jsx');
+var HomeView = require('./home-view.jsx');
 
 var getControllerState = function() {
   return {
     movieData: MovieStore.getMovies(),
-    searchList: MovieStore.getList(),
-    loggedIn: MovieStore.getSession(),
-    listType: MovieStore.getListType()
+    searchData: MovieStore.getList(),
+    session: MovieStore.getSession(),
+    listType: MovieStore.getListType(),
+    signedIn: UserStore.getSignedIn()
   };
 };
 
@@ -23,11 +26,13 @@ module.exports = React.createClass({
 
   componentDidMount: function() {
     MovieStore.addChangeListener(this._onChange);
+    UserStore.addChangeListener(this._onChange);
     this._onChange();
   },
 
   componentWillUnmount: function() {
     MovieStore.removeChangeListener(this._onChange);
+    UserStore.removeChangeListener(this._onChange);
   },
 
   _onChange: function() {
@@ -35,10 +40,11 @@ module.exports = React.createClass({
   },
 
   render: function(){
+    var view = this.state.signedIn ? <SearchView movieData={this.state.movieData}
+      listType={this.state.listType} searchData={this.state.searchData} /> : <HomeView />;
     return (
       <main>
-        <SearchView movieData={this.state.movieData} listType={this.state.listType}
-          searchData={this.state.searchList} />
+        {view}
       </main>
     );
   }
