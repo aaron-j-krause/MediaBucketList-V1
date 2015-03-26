@@ -1,6 +1,6 @@
 'use strict';
 var React = require('react');
-var SearchListCheckbox = require('./search-list-checkbox.jsx');
+var SearchListCheckbox = require('./search-list-checkbox');
 var MovieActions = require('../actions/movie-actions');
 var UserActions = require('../actions/user-actions');
 

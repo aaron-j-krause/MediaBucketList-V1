@@ -2,9 +2,9 @@
 var React = require('react');
 var MovieActions = require('../actions/movie-actions');
 var UserActions = require('../actions/user-actions');
-var MovieSearch = require('./movie-search.jsx');
-var AnchorList = require('./anchor-list.jsx');
-var SearchList = require('./search-list.jsx');
+var MovieSearch = require('./movie-search');
+var AnchorList = require('./anchor-list');
+var SearchList = require('./search-list');
 
 module.exports = React.createClass({
   handleMovieClick: function(event) {
@@ -24,6 +24,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
+  /* jshint ignore:start */
   var list = this.props.listType === 'searchlist' ?
     <SearchList movieData={this.props.movieData} searchData={this.props.searchData} imageUrl={this.props.imageUrl}/>
     : <AnchorList handleClick={this.handleMovieClick} movieData={this.props.movieData} imageUrl={this.props.imageUrl}/>;
@@ -33,5 +34,6 @@ module.exports = React.createClass({
       {list}
     </div>
     );
+  /* jshint ignore:end */
   }
 });

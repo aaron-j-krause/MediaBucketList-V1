@@ -1,6 +1,6 @@
 'use strict';
 var React = require('react');
-var Movie = require('./movie.jsx');
+var Movie = require('./movie');
 
 module.exports = React.createClass({
 

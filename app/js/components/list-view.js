@@ -2,7 +2,7 @@
 
 var React = require('react');
 var UserActions = require('../actions/user-actions');
-var MovieList = require('./movie-list.jsx');
+var MovieList = require('./movie-list');
 
 module.exports = React.createClass({
   componentDidMount: function() {

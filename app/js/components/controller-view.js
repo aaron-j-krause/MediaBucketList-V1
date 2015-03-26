@@ -2,12 +2,12 @@
 var React = require('react');
 var MovieStore = require('../stores/movie-store');
 var UserStore = require('../stores/user-store');
-var HomeView = require('./home-view.jsx');
-var SearchView = require('./search-view.jsx');
-var ListView = require('./list-view.jsx');
-var ProfileView = require('./profile-view.jsx');
+var HomeView = require('./home-view');
+var SearchView = require('./search-view');
+var ListView = require('./list-view');
+var ProfileView = require('./profile-view');
 var UserActions = require('../actions/user-actions.js');
-var UserNav = require('./user-nav.jsx');
+var UserNav = require('./user-nav');
 var MovieActions = require('../actions/movie-actions.js');
 
 var cookies = require('cookies-js');

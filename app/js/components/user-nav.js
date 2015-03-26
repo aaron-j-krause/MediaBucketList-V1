@@ -13,6 +13,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    /* jshint ignore:start */
     return (
       <div className="centered-navigation" role="banner">
         <div className="centered-navigation-wrapper">

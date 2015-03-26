@@ -1,8 +1,8 @@
 'use strict';
 var React = require('react');
-var SignIn = require('./sign-in.jsx');
-var About = require('./about.jsx');
-var HomeContent = require('./home-content.jsx');
+var SignIn = require('./sign-in');
+var About = require('./about');
+var HomeContent = require('./home-content');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -17,6 +17,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    /* jshint trailing:false, quotmark:false, newcap:false */
     var pageView = this.state.view === 'home' ? <HomeContent /> : <About />;
     return (
       <div>
