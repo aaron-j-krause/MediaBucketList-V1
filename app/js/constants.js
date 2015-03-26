@@ -15,5 +15,7 @@ module.exports = keyMirror({
   TEST_ACTION: null,
   //user constants
   USER_SIGN_IN: null,
-  USER_CHECK_VALID: null
+  USER_CHECK_VALID: null,
+  USER_SIGN_OUT: null,
+  USER_NAVIGATE: null
 });
