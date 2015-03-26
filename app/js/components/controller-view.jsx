@@ -2,9 +2,12 @@
 var React = require('react');
 var MovieStore = require('../stores/movie-store');
 var UserStore = require('../stores/user-store');
-var SearchView = require('./search-view.jsx');
 var HomeView = require('./home-view.jsx');
+var SearchView = require('./search-view.jsx');
+var ListView = require('./list-view.jsx');
+var ProfileView = require('./profile-view.jsx');
 var UserActions = require('../actions/user-actions.js');
+var UserNav = require('./user-nav.jsx');
 
 var cookies = require('cookies-js');
 
@@ -12,9 +15,11 @@ var getControllerState = function() {
   return {
     movieData: MovieStore.getMovies(),
     searchData: MovieStore.getList(),
-    session: MovieStore.getSession(),
+    navView: UserStore.getNavView(),
     listType: MovieStore.getListType(),
-    signedIn: UserStore.getSignedIn()
+    signedIn: UserStore.getSignedIn(),
+    lists: UserStore.getLists(),
+    user: UserStore.getUser()
   };
 };
 
@@ -45,10 +50,17 @@ module.exports = React.createClass({
   },
 
   render: function(){
-    var view = this.state.signedIn ? <SearchView movieData={this.state.movieData}
-      listType={this.state.listType} searchData={this.state.searchData} /> : <HomeView />;
+    var views = {
+      'search': <SearchView movieData={this.state.movieData} listType={this.state.listType}
+        searchData={this.state.searchData} />,
+      'profile': <ProfileView signedIn={this.state.signedIn} userData={this.state.user}/>,
+      'lists': <ListView signedIn={this.state.signedIn} listData={this.state.lists}/>
+    };
+    var view = this.state.signedIn ? views[this.state.navView] : <HomeView />;
+    var nav = this.state.signedIn ? <UserNav /> : '';
     return (
       <main>
+        {nav}
         {view}
       </main>
     );

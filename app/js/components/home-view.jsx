@@ -20,8 +20,8 @@ module.exports = React.createClass({
     return (
       <div>
         <nav>
-          <a onClick={this.handleClick} name="home">Home</a>
-          <a onClick={this.handleClick} name="about">About</a>
+          <a href="#" onClick={this.handleClick} name="home">Home</a>
+          <a href="#" onClick={this.handleClick} name="about">About</a>
         </nav>
         {pageView}
       </div>
