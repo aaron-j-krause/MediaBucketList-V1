@@ -4,6 +4,9 @@ var MovieStore = require('../stores/movie-store');
 var UserStore = require('../stores/user-store');
 var SearchView = require('./search-view.jsx');
 var HomeView = require('./home-view.jsx');
+var UserActions = require('../actions/user-actions.js');
+
+var cookies = require('cookies-js');
 
 var getControllerState = function() {
   return {
@@ -27,6 +30,8 @@ module.exports = React.createClass({
   componentDidMount: function() {
     MovieStore.addChangeListener(this._onChange);
     UserStore.addChangeListener(this._onChange);
+    var cookie = cookies.get('signIn');
+    UserActions.isValid(cookie);
     this._onChange();
   },
 
