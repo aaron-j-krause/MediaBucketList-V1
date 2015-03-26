@@ -9,6 +9,8 @@ var movies = [];
 var listType = 'movies';
 var list = [];
 var session = true;
+var imageUrl = '';
+var testList = [];
 
 var MovieStore = _.assign({}, EventEmitter.prototype, {
   getMovies: function() {
@@ -23,8 +25,16 @@ var MovieStore = _.assign({}, EventEmitter.prototype, {
     return list;
   },
 
+  getTestList: function() {
+    return testList;
+  },
+
   getSession: function() {
     return session;
+  },
+
+  getImageData: function() {
+    return imageUrl;
   },
 
   emitChange: function() {
@@ -132,10 +142,23 @@ Dispatcher.register(function(payload) {
 
     SEARCHLIST_SAVE: function() {
       console.log('THIS IS WHERE WE WILL SAVE THE LIST', data);
+      testList = data;
       listType = 'movies';
       list = [];
       movies = [];
       MovieStore.emitChange();
+    },
+
+    CONFIG_GET_URL: function() {
+      MovieAPI.getConfig(function(err, res) {
+        if (err) return console.log(err);
+        console.log('CONFIG', res);
+        var baseUrl = res.images.secure_base_url;
+        var imageSize = res.images.poster_sizes[0];
+        imageUrl = baseUrl + imageSize;
+        console.log('image URL', imageUrl);
+        MovieStore.emitChange();
+      });
     }
   };
 
