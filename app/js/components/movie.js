@@ -7,6 +7,7 @@ module.exports = React.createClass({
     var movieData = this.props.movieData;
     var url = imageData + movieData.poster_path;
     var title = !!(movieData.title) ? movieData.title : movieData.name;
+    /* jshint ignore:start */
     return (
       <div>
         <img src={url} alt={title}/>
@@ -14,5 +15,6 @@ module.exports = React.createClass({
         <input type="checkbox"/>
       </div>
     );
+    /* jshint ignore:end */
   }
 });

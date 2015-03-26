@@ -8,6 +8,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    /* jshint ignore:start */
     var title;
     var img;
     var path;
@@ -29,5 +30,6 @@ module.exports = React.createClass({
         {links}
       </ul>
     );
+    /* jshint ignore:end */
   }
 });

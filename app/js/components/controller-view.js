@@ -56,6 +56,7 @@ module.exports = React.createClass({
   },
 
   render: function(){
+    /* jshint ignore:start */
     var views = {
       'search': <SearchView movieData={this.state.movieData} listType={this.state.listType}
         searchData={this.state.searchData} imageUrl={this.state.imageData}/>,
@@ -72,5 +73,6 @@ module.exports = React.createClass({
         {view}
       </main>
     );
+    /* jshint ignore:end */
   }
 });

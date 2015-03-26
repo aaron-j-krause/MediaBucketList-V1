@@ -17,7 +17,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    /* jshint trailing:false, quotmark:false, newcap:false */
+    /* jshint ignore:start */
     var pageView = this.state.view === 'home' ? <HomeContent /> : <About />;
     return (
       <div>
@@ -35,5 +35,6 @@ module.exports = React.createClass({
         {pageView}
       </div>
     );
+    /* jshint ignore:end */
   }
 });

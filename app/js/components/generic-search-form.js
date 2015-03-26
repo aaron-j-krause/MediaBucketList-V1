@@ -36,6 +36,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    /* jshint ignore:start */
     return (
     <div>
       <form name="movieName" onSubmit={this.handleSubmit}>
@@ -57,5 +58,6 @@ module.exports = React.createClass({
       </form>
     </div>
     );
+    /* jshint ignore:end */
   }
 });

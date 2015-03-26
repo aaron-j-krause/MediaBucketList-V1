@@ -10,11 +10,13 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    /* jshint ignore:start */
     return (
       <div>
         <p>THIS IS THE LIST VIEW</p>
         <MovieList listData={this.props.listData} imageData={this.props.imageData}/>
       </div>
     );
+    /* jshint ignore:end */
   }
 });

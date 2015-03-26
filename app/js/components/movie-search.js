@@ -41,6 +41,7 @@ module.exports = React.createClass({
     var placeholder = 'Search by ' + this.state.formType + ' name';
     var movieChecked = this.state.formType === 'Movie' ? 'true' : null;
     var tvShowChecked = this.state.formType !== 'Movie' ? 'true' : null;
+    /* jshint ignore:start */
     return (
       <form onSubmit={this.handleSubmit}>
         <input type="text" onChange={this.handleChange} value={this.state.name}
@@ -60,5 +61,6 @@ module.exports = React.createClass({
         <input className="horizontal-spacing" type="submit" value={submitButton}/>
       </form>
     );
+    /* jshint ignore:end */
   }
 });

@@ -15,6 +15,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    /* jshint ignore:start */
     var searchItems = this.props.movieData.map(function(movie) {
       return (<SearchListCheckbox imageUrl={this.props.imageUrl} movieData={movie}
         key={movie.id}/>);
@@ -26,5 +27,6 @@ module.exports = React.createClass({
         <input type="submit" value="Make List"/>
       </form>
     );
+    /* jshint ignore:end */
   }
 });

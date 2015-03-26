@@ -8,10 +8,12 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    /* jshint ignore:start */
     return (
       <div>
         <p>THIS IS THE PROFILE VIEW</p>
       </div>
     );
+    /* jshint ignore:end */
   }
 });

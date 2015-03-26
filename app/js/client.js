@@ -3,4 +3,4 @@
 var React = require('react');
 var ControllerView = require('./components/controller-view');
 
-React.render(<ControllerView/>, document.body);
+React.render(<ControllerView/>, document.body); //jshint ignore:line

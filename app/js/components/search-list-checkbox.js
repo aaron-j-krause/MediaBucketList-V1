@@ -12,6 +12,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    /* jshint ignore:start */
     var movieData = this.props.movieData;
     var title = movieData.title ? movieData.title : movieData.name;
     var url = this.props.imageUrl + movieData.poster_path;
@@ -23,5 +24,6 @@ module.exports = React.createClass({
           onChange={this.handleChange} type="checkbox"/>{title}<br/></label>
       </div>
     );
+    /* jshint ignore:end */
   }
 });
