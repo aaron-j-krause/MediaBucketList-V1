@@ -9,6 +9,7 @@ var ProfileView = require('./profile-view.jsx');
 var UserActions = require('../actions/user-actions.js');
 var UserNav = require('./user-nav.jsx');
 var MovieActions = require('../actions/movie-actions.js');
+var Footer = require('./footer.jsx');
 
 var cookies = require('cookies-js');
 
@@ -61,16 +62,19 @@ module.exports = React.createClass({
         searchData={this.state.searchData} imageUrl={this.state.imageData}/>,
       'profile': <ProfileView signedIn={this.state.signedIn} userData={this.state.user}/>,
       'lists': <ListView signedIn={this.state.signedIn} listData={this.state.testList}
-        imageData={this.state.imageData}/>
+        imageData={this.state.imageData}/>,
+      'footer': <Footer signedIn={this.state.signedIn} />
     };
 
     var view = this.state.signedIn ? views[this.state.navView] : <HomeView />;
     var nav = this.state.signedIn ? <UserNav /> : '';
+    var footer = <Footer />;
     return (
-      <main>
-        {nav}
-        {view}
-      </main>
+        <main>
+          {nav}
+          {view}
+          {footer}
+        </main>
     );
   }
 });
