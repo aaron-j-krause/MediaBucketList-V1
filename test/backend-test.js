@@ -15,9 +15,9 @@ describe('app backend testing', function() {
 		});
 	});
 
-	it('should work', function(done) {
+/*	it('should work', function(done) {
 		done();
-	});
+	});*/
 
 	it('should create a user', function(done) {
 		chai.request(server)
