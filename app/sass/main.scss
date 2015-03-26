@@ -11,7 +11,7 @@ article.type-system-sans {
   $base-border-radius: 3px !default;
   $base-line-height: 1.5em !default;
   $base-spacing: 1.5em !default;
-  $base-accent-color: #477DCA !default;
+  $base-accent-color: #626974 !default;
   $base-link-color: $base-accent-color !default;
   $dark-gray: #333 !default;
   $light-gray: #DDD !default;
@@ -157,4 +157,17 @@ article.type-system-sans {
     padding: 1em;
     margin: 1em;
   }
+}
+
+a[data-reactid] {
+  color: #444C45;
+}
+
+.footer {
+  color: white;
+}
+
+.logo {
+  height: 100px;
+  width: 100px;
 }
