@@ -8,7 +8,7 @@
     "jsx": "./node_modules/.bin/jsx ./app/js/components/ ./app/js/test-components/",
 
     "pretest": "npm run jsx",
-    "posttest": "bam"
+    "posttest": "rm -rf app/js/test-components"
   },
   "license": "ISC",
   "devDependencies": {

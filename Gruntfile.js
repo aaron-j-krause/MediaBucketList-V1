@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 				options: {
 					jshintrc: '.jshintrc'
 				},
-				src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'index.js', 'app/**/*.js', 'app/**/*.jsx']
+				src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'index.js', 'app/**/*.js']
 			}
 		},
 
@@ -31,13 +31,13 @@ module.exports = function(grunt) {
 
 		clean: {
 			build: {
-				src: ['build']
+				src: ['build', 'app/js/test-components']
 			}
 		},
 
 		browserify: {
 			dev: {
-				src: ['app/**/*.js', 'app/**/*.jsx'],
+				src: ['app/**/*.js'],
 				dest: 'build/bundle.js'
 			},
 			options: {
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
     }
 	});
 
-	grunt.registerTask('build', ['jshint', 'clean', 'copy', 'browserify', 'sass']);
+	grunt.registerTask('build', ['clean', 'jshint', 'copy', 'browserify', 'sass']);
 	grunt.registerTask('test', ['jshint:dev', 'simplemocha:all']);
 	grunt.registerTask('default', ['test']);
 };
