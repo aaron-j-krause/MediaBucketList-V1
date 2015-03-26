@@ -12,8 +12,6 @@ module.exports = React.createClass({
     var img;
     var path;
     var imageUrl = this.props.imageUrl;
-    var movieData = this.props.movieData;
-    console.log('ANCHOR LIST DATA', movieData);
     var links = this.props.movieData.map(function(movie) {
       title = movie.title ? 'title' : 'name';
       path = movie.poster_path ? movie.poster_path : movie.profile_path;
