@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "./node_modules/.bin/mocha --recursive",
+    "jsx": "./node_modules/.bin/jsx --extension jsx ./app/js/components/ ./app/js/test-components/"
   },
   "license": "ISC",
   "devDependencies": {
@@ -22,6 +22,7 @@
     "grunt-jsxhint": "^0.5.0",
     "grunt-sass": "^0.18.1",
     "grunt-simple-mocha": "^0.4.0",
+    "jsdom": "^3.1.2",
     "mocha": "^2.1.0",
     "node-bourbon": "^4.2.1-beta1",
     "node-neat": "^1.7.1-beta1",
@@ -42,5 +43,5 @@
     "sequelize": "^2.0.4",
     "sequelize-cli": "^1.4.0",
     "superagent": "^1.1.0"
-  }
+  },
 }
