@@ -13,6 +13,7 @@ module.exports = keyMirror({
   SEARCHLIST_MODIFY: null,
   SEARCHLIST_SAVE: null,
   TEST_ACTION: null,
+  CONFIG_GET_URL: null,
   //user constants
   USER_SIGN_IN: null,
   USER_CHECK_VALID: null,

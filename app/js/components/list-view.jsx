@@ -2,6 +2,7 @@
 
 var React = require('react');
 var UserActions = require('../actions/user-actions');
+var MovieList = require('./movie-list.jsx');
 
 module.exports = React.createClass({
   componentDidMount: function() {
@@ -12,6 +13,7 @@ module.exports = React.createClass({
     return (
       <div>
         <p>THIS IS THE LIST VIEW</p>
+        <MovieList listData={this.props.listData} imageData={this.props.imageData}/>
       </div>
     );
   }

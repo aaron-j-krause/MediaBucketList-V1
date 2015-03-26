@@ -14,9 +14,14 @@ module.exports = React.createClass({
   render: function() {
     var movieData = this.props.movieData;
     var title = movieData.title ? movieData.title : movieData.name;
+    var url = this.props.imageUrl + movieData.poster_path;
+    var img = movieData.poster_path ? <img alt={title} src={url}/> : '';
     return (
-      <label><input name={title} value={title}
-        onChange={this.handleChange} type="checkbox"/>{title}<br/></label>
+      <div>
+        {img}
+        <label><input name={title} value={title}
+          onChange={this.handleChange} type="checkbox"/>{title}<br/></label>
+      </div>
     );
   }
 });

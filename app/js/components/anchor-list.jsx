@@ -8,11 +8,17 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var movieData = this.props.movieData;
-    var title = movieData[0] && movieData[0].title ? 'title' : 'name';
+    var title;
+    var img;
+    var path;
+    var imageUrl = this.props.imageUrl;
     var links = this.props.movieData.map(function(movie) {
+      title = movie.title ? 'title' : 'name';
+      path = movie.poster_path ? movie.poster_path : movie.profile_path;
+      img = path ? <img alt={title} src={imageUrl + path}/> : '';
       return (
         <li key={movie.id}>
+          {img}
           <a name={movie.id} href="#" onClick={this.props.handleClick}>{movie[title]}</a>
         </li>
       );

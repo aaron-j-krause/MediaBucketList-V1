@@ -70,5 +70,12 @@ module.exports = {
       actionType: 'SEARCHLIST_SAVE',
       data: data
     });
+  },
+
+  getConfig: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'CONFIG_GET_URL',
+      data: data
+    });
   }
 };
