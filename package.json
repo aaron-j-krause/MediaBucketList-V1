@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --recursive",
-    "jsx": "./node_modules/.bin/jsx --extension jsx ./app/js/components/ ./app/js/test-components/"
+    "jsx": "./node_modules/.bin/jsx ./app/js/components/ ./app/js/test-components/"
   },
   "license": "ISC",
   "devDependencies": {
