@@ -49,12 +49,12 @@ module.exports = React.createClass({
         <div className="button-group horizontal-spacing">
           <label>
             <input type="radio" name="searchSelect" value="Movie" 
-              checked={movieChecked} onChange={this.changeFormType} />
+              onChange={this.changeFormType} />
             <span className="button-group-item">Movie</span>
           </label>
           <label>
             <input type="radio" name="searchSelect" value="TV Show" 
-              checked={tvShowChecked} onChange={this.changeFormType} />
+              onChange={this.changeFormType} />
             <span className="button-group-item">TV Show</span>
           </label>
         </div>
