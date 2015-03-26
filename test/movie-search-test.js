@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react/addons');
-var expect = require('chai').expect;
+var expect = require('chai').expect; //jshint ignore:line
 var MovieSearch = require('../app/js/test-components/movie-search');
 var TestUtils = React.addons.TestUtils;
 var MovieSearchFactory = React.createFactory(MovieSearch)();
@@ -11,7 +11,7 @@ describe('Movie-search component', function(){
   var renderedComponent;
 
   before('render and locate element', function() {
-    var component = MovieSearchFactory
+    var component = MovieSearchFactory;
 
     renderedComponent = TestUtils.renderIntoDocument(MovieSearchFactory, document.body);
 

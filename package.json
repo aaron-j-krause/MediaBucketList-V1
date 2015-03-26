@@ -4,8 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --recursive",
-    "jsx": "./node_modules/.bin/jsx ./app/js/components/ ./app/js/test-components/"
+    "test": "./node_modules/.bin/mocha",
+    "jsx": "./node_modules/.bin/jsx ./app/js/components/ ./app/js/test-components/",
+
+    "pretest": "npm run jsx",
+    "posttest": "bam"
   },
   "license": "ISC",
   "devDependencies": {
