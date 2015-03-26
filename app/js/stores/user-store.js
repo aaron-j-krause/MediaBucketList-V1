@@ -43,7 +43,12 @@ Dispatcher.register(function(payload) {
 
     USER_CHECK_VALID: function() {
       //TODO call to check valid user
-      if(!data) signedIn = false;
+      console.log('IN STORE', data);
+      if(!data) {
+        signedIn = false;
+      } else {
+        signedIn = true;
+      }
       UserStore.emitChange();
     }
   };
