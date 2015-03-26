@@ -8,15 +8,20 @@ var ListView = require('./list-view.jsx');
 var ProfileView = require('./profile-view.jsx');
 var UserActions = require('../actions/user-actions.js');
 var UserNav = require('./user-nav.jsx');
+var MovieActions = require('../actions/movie-actions.js');
 
 var cookies = require('cookies-js');
 
 var getControllerState = function() {
   return {
+    //movie state
     movieData: MovieStore.getMovies(),
     searchData: MovieStore.getList(),
-    navView: UserStore.getNavView(),
     listType: MovieStore.getListType(),
+    testList: MovieStore.getTestList(),
+    imageData: MovieStore.getImageData(),
+    //user state
+    navView: UserStore.getNavView(),
     signedIn: UserStore.getSignedIn(),
     lists: UserStore.getLists(),
     user: UserStore.getUser()
@@ -37,6 +42,7 @@ module.exports = React.createClass({
     UserStore.addChangeListener(this._onChange);
     var cookie = cookies.get('signIn');
     UserActions.isValid(cookie);
+    MovieActions.getConfig();
     this._onChange();
   },
 
@@ -52,10 +58,12 @@ module.exports = React.createClass({
   render: function(){
     var views = {
       'search': <SearchView movieData={this.state.movieData} listType={this.state.listType}
-        searchData={this.state.searchData} />,
+        searchData={this.state.searchData} imageUrl={this.state.imageData}/>,
       'profile': <ProfileView signedIn={this.state.signedIn} userData={this.state.user}/>,
-      'lists': <ListView signedIn={this.state.signedIn} listData={this.state.lists}/>
+      'lists': <ListView signedIn={this.state.signedIn} listData={this.state.testList}
+        imageData={this.state.imageData}/>
     };
+
     var view = this.state.signedIn ? views[this.state.navView] : <HomeView />;
     var nav = this.state.signedIn ? <UserNav /> : '';
     return (

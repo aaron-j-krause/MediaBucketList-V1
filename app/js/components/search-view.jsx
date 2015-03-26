@@ -25,8 +25,8 @@ module.exports = React.createClass({
 
   render: function() {
   var list = this.props.listType === 'searchlist' ?
-    <SearchList movieData={this.props.movieData} searchData={this.props.searchData} />
-    : <AnchorList handleClick={this.handleMovieClick} movieData={this.props.movieData} />;
+    <SearchList movieData={this.props.movieData} searchData={this.props.searchData} imageUrl={this.props.imageUrl}/>
+    : <AnchorList handleClick={this.handleMovieClick} movieData={this.props.movieData} imageUrl={this.props.imageUrl}/>;
     return (
     <div>
       <MovieSearch movieData={this.props.movieData} />
