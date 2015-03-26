@@ -17,7 +17,7 @@ module.exports = React.createClass({
   render: function() {
     var searchItems = this.props.movieData.map(function(movie) {
       return (<SearchListCheckbox imageUrl={this.props.imageUrl} movieData={movie}
-        key={movie.id}/>);
+        key={movie.id} sublist={this.props.sublist}/>);
     }.bind(this));
 
     return (

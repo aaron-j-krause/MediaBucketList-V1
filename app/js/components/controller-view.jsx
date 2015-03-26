@@ -21,6 +21,7 @@ var getControllerState = function() {
     listType: MovieStore.getListType(),
     testList: MovieStore.getTestList(),
     imageData: MovieStore.getImageData(),
+    sublist: MovieStore.getSubList(),
     //user state
     navView: UserStore.getNavView(),
     signedIn: UserStore.getSignedIn(),
@@ -59,7 +60,7 @@ module.exports = React.createClass({
   render: function(){
     var views = {
       'search': <SearchView movieData={this.state.movieData} listType={this.state.listType}
-        searchData={this.state.searchData} imageUrl={this.state.imageData}/>,
+        searchData={this.state.searchData} imageUrl={this.state.imageData} sublist={this.state.sublist}/>,
       'profile': <ProfileView signedIn={this.state.signedIn} userData={this.state.user}/>,
       'lists': <ListView signedIn={this.state.signedIn} listData={this.state.testList}
         imageData={this.state.imageData}/>,

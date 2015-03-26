@@ -1,0 +1,35 @@
+{
+  "development": {
+    "username": "mediabucketlist",
+    "password": "changemenow",
+    "database": "mediabucketlist-dev",
+    "options": {
+      "host": "127.0.0.1",
+      "port": "5432",
+      "dialect": "postgres",
+      "logging": false
+    }
+  },
+  "test": {
+    "username": "mediabucketlist",
+    "password": "changemenow",
+    "database": "mediabucketlist-test",
+    "options": {
+      "host": "127.0.0.1",
+      "port": "5432",
+      "dialect": "postgres",
+      "logging": false
+    }
+  },
+  "production": {
+    "username": "mediabucketlist",
+    "password": "changemenow",
+    "database": "mediabucketlist-prod",
+    "options": {
+      "host": "127.0.0.1",
+      "port": "5432",
+      "dialect": "postgres",
+      "logging": false
+    }
+  }
+}

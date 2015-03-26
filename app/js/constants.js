@@ -8,7 +8,7 @@ module.exports = keyMirror({
   MOVIE_GET_BY_ID: null,
   PERSON_GET_BY_NAME: null,
   TV_GET_BY_NAME: null,
-  TV_GET_SEASON: null,
+  TV_GET_SHOW_BY_ID: null,
   TV_GET_BY_ID: null,
   SEARCHLIST_MODIFY: null,
   SEARCHLIST_SAVE: null,
