@@ -39,18 +39,25 @@ module.exports = React.createClass({
   render: function() {
     var submitButton = 'Find ' + this.state.formType;
     var placeholder = 'Search by ' + this.state.formType + ' name';
+    var movieChecked = this.state.formType === 'Movie' ? 'true' : null;
+    var tvShowChecked = this.state.formType !== 'Movie' ? 'true' : null;
     return (
       <form onSubmit={this.handleSubmit}>
-        <label> By Movie
-          <input type="radio" name="searchSelect" value="Movie"
-            onChange={this.changeFormType}/>
-        </label>
-        <label> By TV Show
-          <input type="radio" name="searchSelect" value="TV Show" onChange={this.changeFormType}/>
-        </label>
         <input type="text" onChange={this.handleChange} value={this.state.name}
           placeholder={placeholder}/>
-        <input type="submit" value={submitButton}/>
+        <div className="button-group horizontal-spacing">
+          <label>
+            <input type="radio" name="searchSelect" value="Movie" 
+              checked={movieChecked} onChange={this.changeFormType} />
+            <span className="button-group-item">Movie</span>
+          </label>
+          <label>
+            <input type="radio" name="searchSelect" value="TV Show" 
+              checked={tvShowChecked} onChange={this.changeFormType} />
+            <span className="button-group-item">TV Show</span>
+          </label>
+        </div>
+        <input className="horizontal-spacing" type="submit" value={submitButton}/>
       </form>
     );
   }
