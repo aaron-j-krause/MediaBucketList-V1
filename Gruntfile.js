@@ -1,19 +1,19 @@
 'use strict';
 module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-jsxhint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-simple-mocha');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-sass');
+  	grunt.loadNpmTasks('grunt-sass');
 
 	grunt.initConfig({
 		jshint: {
 			dev: {
-        options: {
-          jshintrc: '.jshintrc'
-        },
+				options: {
+					jshintrc: '.jshintrc'
+				},
 				src: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'index.js', 'app/**/*.js', 'app/**/*.jsx']
 			}
 		},
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 			build: {
 				expand: true,
 				cwd: 'app/',
-				src:['**/*.html'],
+				src:['**/*.html', './img/**/*.*'],
 				dest: 'build/',
 				flatten: false,
 				filter: 'isFile'

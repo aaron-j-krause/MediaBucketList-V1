@@ -9,6 +9,9 @@ var movies = [];
 var listType = 'movies';
 var list = [];
 var session = true;
+var imageUrl = '';
+var testList = [];
+var sublist = [];
 
 var MovieStore = _.assign({}, EventEmitter.prototype, {
   getMovies: function() {
@@ -23,8 +26,20 @@ var MovieStore = _.assign({}, EventEmitter.prototype, {
     return list;
   },
 
+  getTestList: function() {
+    return testList;
+  },
+
   getSession: function() {
     return session;
+  },
+
+  getImageData: function() {
+    return imageUrl;
+  },
+
+  getSubList: function() {
+    return sublist;
   },
 
   emitChange: function() {
@@ -92,23 +107,31 @@ Dispatcher.register(function(payload) {
       });
     },
 
-    TV_GET_SEASON: function() {
+    TV_GET_SHOW_BY_ID: function() {
       MovieAPI.searchTvById(data, function(err, res) {
         if (err) return console.log(err);
-        movies = [];
-        for (var i = 0; i < res.seasons.length; i++) {
-          movies.push({
-            show: {
-              name: res.name,
-              id: res.id
-            },
-            name: i,
-            id: i,
-            watched: false
-          });
-        }
-        listType = 'searchlist';
-        MovieStore.emitChange();
+        var show = res;
+          movies = [];
+          for (var i = 0; i < show.seasons.length; i++) {
+            movies.push({
+              show: {
+                name: show.name,
+                id: show.id
+              },
+              name: i,
+              id: i,
+              watched: false
+            });
+          }
+          listType = 'searchlist';
+          MovieStore.emitChange();
+      });
+    },
+
+    TV_GET_EPISODES: function() {
+      MovieAPI.searchByTvSeason(data, function(err, res) {
+        if (err) return console.log(err);
+        console.log(res);
       });
     },
 
@@ -127,15 +150,40 @@ Dispatcher.register(function(payload) {
         var index = list.indexOf(data.movie);
         list.splice(index, 1);
       }
-      MovieStore.emitChange();
+
+      if(data.movie.show){
+        var show = data.movie.show.id;
+        var seasonNumber = data.movie.id;
+        MovieAPI.searchByTvSeason(show, seasonNumber, function(err, res) {
+          if(err) return console.log(err);
+          sublist[seasonNumber] = res.episodes;
+          MovieStore.emitChange();
+        });
+
+      } else {
+        MovieStore.emitChange();
+      }
     },
 
     SEARCHLIST_SAVE: function() {
       console.log('THIS IS WHERE WE WILL SAVE THE LIST', data);
+      testList = data;
       listType = 'movies';
       list = [];
       movies = [];
+      sublist = [];
       MovieStore.emitChange();
+    },
+
+    CONFIG_GET_URL: function() {
+      MovieAPI.getConfig(function(err, res) {
+        if (err) return console.log(err);
+        console.log('CONFIG', res);
+        var baseUrl = res.images.secure_base_url;
+        var imageSize = res.images.poster_sizes[0];
+        imageUrl = baseUrl + imageSize;
+        MovieStore.emitChange();
+      });
     }
   };
 

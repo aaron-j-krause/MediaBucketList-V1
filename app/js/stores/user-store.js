@@ -3,17 +3,28 @@ var Dispatcher = require('../dispatcher/dispatcher');
 var constants = require('../constants');
 var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
+var cookies = require('cookies-js');
 
-var session = true;
+var navView = 'search';
 var signedIn = false;
+var lists = [];
+var user = {};
 
 var UserStore = _.assign({}, EventEmitter.prototype, {
   getSignedIn: function() {
     return signedIn;
   },
 
-  getSession: function() {
-    return session;
+  getNavView: function() {
+    return navView;
+  },
+
+  getLists: function() {
+    return lists;
+  },
+
+  getUser: function() {
+    return user;
   },
 
   emitChange: function() {
@@ -38,19 +49,34 @@ Dispatcher.register(function(payload) {
       //data.username = usernamed, data.password = password;
       console.log('sign in made it', data);
       signedIn = true;
-      UserStore.emitChange();
+    },
+
+    USER_SIGN_OUT: function() {
+      console.log(cookies.get('signIn'));
+      cookies.set('signIn', false);
+      signedIn = false;
+      console.log('SIGN OUT IN STORE');
     },
 
     USER_CHECK_VALID: function() {
       //TODO call to check valid user
-      if(!data) signedIn = false;
-      UserStore.emitChange();
+      console.log('IN STORE', data);
+      if(!data) {
+        signedIn = false;
+      } else {
+        signedIn = true;
+      }
+    },
+
+    USER_NAVIGATE: function() {
+      navView = data;
     }
   };
 
   if (!handlers[actionType]) return true;
 
   handlers[actionType]();
+  UserStore.emitChange();
 
   return true;
 });

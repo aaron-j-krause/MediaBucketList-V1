@@ -46,7 +46,7 @@ module.exports = {
 
   getSeasonByShowId: function(data) {
     Dispatcher.handleAction({
-      actionType: 'TV_GET_SEASON',
+      actionType: 'TV_GET_SHOW_BY_ID',
       data: data
     });
   },
@@ -68,6 +68,13 @@ module.exports = {
   searchListSaveNew: function(data) {
     Dispatcher.handleAction({
       actionType: 'SEARCHLIST_SAVE',
+      data: data
+    });
+  },
+
+  getConfig: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'CONFIG_GET_URL',
       data: data
     });
   }
