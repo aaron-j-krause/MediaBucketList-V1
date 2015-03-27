@@ -4,6 +4,7 @@ var constants = require('../constants');
 var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
 var MovieAPI = require('../../../lib/movie-db/movie-db');
+var request = require('superagent');
 
 var movies = [];
 var listType = 'movies';
@@ -128,17 +129,10 @@ Dispatcher.register(function(payload) {
       });
     },
 
-    TV_GET_EPISODES: function() {
-      MovieAPI.searchByTvSeason(data, function(err, res) {
-        if (err) return console.log(err);
-        console.log(res);
-      });
-    },
-
     TV_GET_BY_ID: function() {
       MovieAPI.searchTvById(data, function(err, res) {
         if (err) return console.log(err);
-        console.log('TVID', res);
+        console.log(res);
       });
     },
 
@@ -166,13 +160,29 @@ Dispatcher.register(function(payload) {
     },
 
     SEARCHLIST_SAVE: function() {
-      console.log('THIS IS WHERE WE WILL SAVE THE LIST', data);
-      testList = data;
-      listType = 'movies';
-      list = [];
-      movies = [];
-      sublist = [];
-      MovieStore.emitChange();
+
+      var user = ''; //hard code user name here
+      var type = ''; //hard code list type here
+
+      request
+        .post('/api/v1/buckets/')
+        .send({
+          username: user,
+          userId: 1,
+          listType: type,
+          subjectId: '666',
+          subjectInfo: data
+        })
+        .end(function(err, res){
+          console.log('PLEASE WORK DB REQUEST', err, res);
+          testList = data;
+          listType = 'movies';
+          list = [];
+          movies = [];
+          sublist = [];
+          MovieStore.emitChange();
+        });
+
     },
 
     CONFIG_GET_URL: function() {

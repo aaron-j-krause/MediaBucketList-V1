@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/api/v1/buckets', authHandler, bucketLists);
-app.use('/api/v1/users', users);
+app.use('/api/v1/users', authHandler, users);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -47,6 +47,5 @@ if (app.get('env') === 'production') {
     console.log(err);
   });
 }
-
 
 module.exports = app;
