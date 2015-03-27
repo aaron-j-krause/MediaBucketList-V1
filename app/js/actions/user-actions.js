@@ -27,5 +27,10 @@ module.exports = {
       actionType: 'USER_NAVIGATE',
       data: data
     });
+  },
+  getLists: function() {
+    Dispatcher.handleAction({
+      actionType: 'USER_GET_LISTS'
+    });
   }
 };

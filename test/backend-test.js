@@ -1,27 +1,24 @@
 'use strict';
 
+process.env.NODE_ENV = 'test';
 var chai = require('chai');
 var chaihttp = require('chai-http');
 var expect = chai.expect;//jshint ignore:line
 chai.use(chaihttp);
 
 describe('app backend testing', function() {
-	var server;
+  var server;
 
-	before(function(done) {
-		require('../server')(true, function(srv) {
-			server = srv;
-			done();
-		});
-	});
-
-/*	it('should work', function(done) {
-		done();
-	});*/
+  before(function(done) {
+    require('../server')(function(srv) {
+      server = srv;
+      done();
+    });
+  });
 
 	it('should create a user', function(done) {
 		chai.request(server)
-		.post('/api/user')
+		.post('/api/v1/users')
 		.send({"username":"test", "displayName":"test"})
 		.end(function(err, res) {
 			expect(err).to.eql(null);
@@ -33,7 +30,7 @@ describe('app backend testing', function() {
 
 	it('should get user info', function(done) {
 		chai.request(server)
-		.get('/api/user/test')
+		.get('/api/v1/users/test')
 		.end(function(err, res) {
 			expect(err).to.eql(null);
 			expect(res).to.have.status(200);
@@ -44,7 +41,7 @@ describe('app backend testing', function() {
 
 	it('should delete the user', function(done) {
 		chai.request(server)
-		.del('/api/user/test')
+		.del('/api/v1/users/test')
 		.end(function(err, res) {
 			expect(err).to.eql(null);
 			expect(res).to.have.status(200);

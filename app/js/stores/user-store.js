@@ -47,22 +47,39 @@ Dispatcher.register(function(payload) {
 
   var handlers = {
     USER_SIGN_IN: function() {
-      signedIn = true;
-    },
+      var username = cookies.get('username');
+      console.log('USER COOKIE', username);
+      var url = '/api/v1/users/' + username;
+      request
+        .get(url)
+        .end(function(err, res) {
+          user.id = res.body.id;
+          user.username = res.body.username;
+          request
+            .get('/api/v1/buckets/' + user.id)
+            .end(function(err, res) {
+              lists = res.body;
+              signedIn = true;
+            });
+       });
+     },
 
     USER_SIGN_OUT: function() {
-      console.log(cookies.get('signIn'));
       cookies.set('signIn', false);
+      cookies.expire('signIn');
+      cookies.expire('username');
       signedIn = false;
+      user = {};
     },
 
     USER_GET_LISTS: function() {
-      var id = ''; //hardcode user id here
+      var id = user.id;
       var url = '/api/buckets/' + id;
       request
         .get(url)
         .end(function(err, res) {
-          console.log(res);
+          lists = res.body;
+          UserStore.emitChange();
         });
     },
 
@@ -76,7 +93,7 @@ Dispatcher.register(function(payload) {
 
     USER_NAVIGATE: function() {
       if (data === 'lists') {
-      var id = ''; //hard code user id here
+      var id = user.id;
       var url = '/api/v1/buckets/' + id;
       request
         .get(url)
@@ -87,9 +104,9 @@ Dispatcher.register(function(payload) {
         });
       } else {
         navView = data;
-      }
     }
-  };
+  }
+};
 
   if (!handlers[actionType]) return true;
 

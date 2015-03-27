@@ -43,6 +43,7 @@ module.exports = React.createClass({
     MovieStore.addChangeListener(this._onChange);
     UserStore.addChangeListener(this._onChange);
     var cookie = cookies.get('signIn');
+    UserActions.signIn();
     UserActions.isValid(cookie);
     MovieActions.getConfig();
     this._onChange();
