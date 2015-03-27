@@ -160,10 +160,9 @@ Dispatcher.register(function(payload) {
     },
 
     SEARCHLIST_SAVE: function() {
-      console.log('THIS IS WHERE WE WILL SAVE THE LIST', data);
 
-      var user = 'AaronCrows';
-      var type = 'person';
+      var user = ''; //hard code user name here
+      var type = ''; //hard code list type here
 
       request
         .post('/api/v1/buckets/')

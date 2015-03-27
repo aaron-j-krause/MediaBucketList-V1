@@ -57,7 +57,7 @@ Dispatcher.register(function(payload) {
     },
 
     USER_GET_LISTS: function() {
-      var id = 1;
+      var id = ''; //hardcode user id here
       var url = '/api/buckets/' + id;
       request
         .get(url)
@@ -76,7 +76,7 @@ Dispatcher.register(function(payload) {
 
     USER_NAVIGATE: function() {
       if (data === 'lists') {
-      var id = 1;
+      var id = '' //hard code user id here
       var url = '/api/v1/buckets/' + id;
       request
         .get(url)
