@@ -8,9 +8,15 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    var filler = (
+      <div>
+        <img src="./img/logo.png" className="filler" alt="Logo image"></img>
+      </div>
+    );
     return (
       <div>
         <p>THIS IS THE PROFILE VIEW</p>
+        {filler}
       </div>
     );
   }

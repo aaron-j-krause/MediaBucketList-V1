@@ -76,7 +76,7 @@ Dispatcher.register(function(payload) {
 
     USER_NAVIGATE: function() {
       if (data === 'lists') {
-      var id = '' //hard code user id here
+      var id = ''; //hard code user id here
       var url = '/api/v1/buckets/' + id;
       request
         .get(url)

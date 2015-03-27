@@ -119,7 +119,7 @@ Dispatcher.register(function(payload) {
                 name: show.name,
                 id: show.id
               },
-              name: i,
+              name: 'Season ' + i,
               id: i,
               watched: false
             });
