@@ -47,8 +47,21 @@ Dispatcher.register(function(payload) {
 
   var handlers = {
     USER_SIGN_IN: function() {
-      signedIn = true;
-    },
+      var username = cookies.get('username');
+      console.log('USER COOKIE', username);
+      var url = '/api/v1/users/' + username;
+      request
+        .get(url)
+        .end(function(err, res) {
+          var id = res.body.id;
+          request
+            .get('/api/v1/buckets/' + id)
+            .end(function(err, res) {
+              lists = res.body;
+              signedIn = true;
+            })
+       });
+     },
 
     USER_SIGN_OUT: function() {
       console.log(cookies.get('signIn'));
@@ -75,19 +88,7 @@ Dispatcher.register(function(payload) {
     },
 
     USER_NAVIGATE: function() {
-      if (data === 'lists') {
-      var id = '' //hard code user id here
-      var url = '/api/v1/buckets/' + id;
-      request
-        .get(url)
-        .end(function(err, res) {
-          lists = res.body;
-          navView = data;
-          UserStore.emitChange();
-        });
-      } else {
-        navView = data;
-      }
+      navView = data;
     }
   };
 
