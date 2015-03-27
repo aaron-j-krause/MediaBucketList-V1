@@ -208,6 +208,10 @@ form.searchitemlist {
   }
 }
 
+.searchitems:hover {
+  background-color: $light-gray;
+}
+
 .searchitems img {
   margin: auto;
 }
