@@ -53,7 +53,8 @@ Dispatcher.register(function(payload) {
       request
         .get(url)
         .end(function(err, res) {
-          var id = res.body.id;
+          user.id = res.body.id;
+          user.username = res.body.username;
           request
             .get('/api/v1/buckets/' + id)
             .end(function(err, res) {
@@ -70,12 +71,13 @@ Dispatcher.register(function(payload) {
     },
 
     USER_GET_LISTS: function() {
-      var id = ''; //hardcode user id here
+      var id = user.id;
       var url = '/api/buckets/' + id;
       request
         .get(url)
         .end(function(err, res) {
-          console.log(res);
+          lists = res.body
+          UserStore.emitChange();
         });
     },
 
@@ -88,9 +90,21 @@ Dispatcher.register(function(payload) {
     },
 
     USER_NAVIGATE: function() {
-      navView = data;
+      if (data === 'lists') {
+      var id = user.id;
+      var url = '/api/v1/buckets/' + id;
+      request
+        .get(url)
+        .end(function(err, res) {
+          lists = res.body;
+          navView = data;
+          UserStore.emitChange();
+        });
+      } else {
+        navView = data;
     }
-  };
+  }
+}
 
   if (!handlers[actionType]) return true;
 
