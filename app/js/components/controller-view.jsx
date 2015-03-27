@@ -57,7 +57,7 @@ module.exports = React.createClass({
     this.setState(getControllerState());
   },
 
-  render: function(){
+  render: function() {
     var views = {
       'search': <SearchView movieData={this.state.movieData} listType={this.state.listType}
         searchData={this.state.searchData} imageUrl={this.state.imageData} sublist={this.state.sublist}/>,

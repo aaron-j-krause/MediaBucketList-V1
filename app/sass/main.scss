@@ -208,15 +208,27 @@ a[data-reactid] {
 .mediabucketlist {
   font-size: 30px;
   font-weight: bold;
-  //position: absolute;
-  left: 140px;
-  top: 50px;
+  position: absolute;
+  left: 60px;
+  top: 8px;
 }
 
 .logo {
   height: 50px;
   width: 50px;
-  //position: absolute;
+  position: absolute;
   left: 90px;
-  top: 50px;
+  top: 15px;
 } 
+
+.searchbox {
+  width: 300px;
+}
+
+.button-group-item {
+  //position: absolute;
+  left: 600px;
+  top: 250px;
+}
+
+
