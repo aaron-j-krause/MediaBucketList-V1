@@ -15,7 +15,6 @@ module.exports = React.createClass({
     }.bind(this));
     return (
       <div>
-        <p>THIS IS THE LIST VIEW</p>
         {movieLists}
       </div>
     );

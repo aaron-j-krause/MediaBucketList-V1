@@ -19,7 +19,6 @@ module.exports = React.createClass({
           <nav role="navigation">
             <div className="mediabucketlist">MediaBucketList</div>
             <ul id="js-centered-navigation-menu" className="centered-navigation-menu">
-              <li className="nav-link"><a href="#" onClick={this.handleNav} name="profile">Profile</a></li>
               <li className="nav-link"><a href="#" onClick={this.handleNav} name="lists">Lists</a></li>
               <li className="nav-link"><a href="#" onClick={this.handleNav} name="search">Search</a></li>
               <li className="nav-link"><a href="#" onClick={this.handleClick}>Sign Out</a></li>

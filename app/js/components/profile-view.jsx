@@ -15,7 +15,6 @@ module.exports = React.createClass({
     );
     return (
       <div>
-        <p>THIS IS THE PROFILE VIEW</p>
         {filler}
       </div>
     );

@@ -36,11 +36,17 @@ module.exports = React.createClass({
     });
   },
 
+  handleClick: function() {
+    MovieActions.searchListSaveNew(this.props.searchData);
+  },
+
   render: function() {
+    console.log(this.props.searchData, 'IN MAKE LIST');
     var submitButton = 'Find ' + this.state.formType;
     var placeholder = 'Search by ' + this.state.formType + ' name';
     var movieChecked = this.state.formType === 'Movie' ? 'true' : null;
     var tvShowChecked = this.state.formType !== 'Movie' ? 'true' : null;
+    var makeList = this.props.searchData[0] ? <input type="button" value="Make List" onClick={this.handleClick}/> : '';
     return (
       <form className="searchBar" onSubmit={this.handleSubmit}>
         <input className="searchbox" type="text" onChange={this.handleChange} value={this.state.name}
@@ -58,6 +64,7 @@ module.exports = React.createClass({
           </label>
         </div>
         <input className="horizontal-spacing" type="submit" value={submitButton}/>
+        {makeList}
       </form>
     );
   }
