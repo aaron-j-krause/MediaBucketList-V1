@@ -6,6 +6,7 @@ module.exports = React.createClass({
     return (
       <p>
         This is our about page. We use the movie database API.
+        <img src="./img/movieApi.png" className="movieapi" alt="API image"></img>
       </p>
     );
   }

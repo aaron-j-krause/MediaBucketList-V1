@@ -17,7 +17,7 @@ module.exports = React.createClass({
       path = movie.poster_path ? movie.poster_path : movie.profile_path;
       img = path ? <img alt={title} src={imageUrl + path}/> : '';
       return (
-        <li key={movie.id}>
+        <li className="searchitems" key={movie.id}>
           {img}
           <a name={movie.id} href="#" onClick={this.props.handleClick}>{movie[title]}</a>
         </li>
@@ -25,7 +25,7 @@ module.exports = React.createClass({
     }.bind(this));
 
     return (
-      <ul>
+      <ul className="searchitemlist">
         {links}
       </ul>
     );
