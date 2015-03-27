@@ -18,7 +18,7 @@ module.exports = React.createClass({
     var url = this.props.imageUrl + path;
     var img = path ? <img alt={title} src={url}/> : '';
     return (
-      <div>
+      <div className="searchitems episode">
         {img}
         <label><input name={title} value={title}
           onChange={this.handleChange} type="checkbox"/>{title}<br/></label>

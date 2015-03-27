@@ -191,10 +191,7 @@ form.searchitemlist {
 
 .searchitemlist {
   @include outer-container;
-  //z-index: 2;
-  //position: absolute;
   margin-top: 50px;
-  //left: 150px;
 }
 
 .searchitems {
@@ -206,6 +203,9 @@ form.searchitemlist {
   img {
     display: block;
   }
+}
+.searchitems.episode {
+  height: 130px;
 }
 
 .searchitems:hover {
@@ -232,9 +232,6 @@ form.searchitemlist {
 .logo {
   height: 50px;
   width: 50px;
-  position: absolute;
-  left: 90px;
-  top: 15px;
 } 
 
 .searchbox {
