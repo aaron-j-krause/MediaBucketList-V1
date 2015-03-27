@@ -11,7 +11,7 @@ module.exports = React.createClass({
 
     var title = !!(movieData.title) ? movieData.title : movieData.name;
     return (
-      <div>
+      <div className="searchitems">
         {imgTag}
         <li>{title}</li>
         <input type="checkbox"/>

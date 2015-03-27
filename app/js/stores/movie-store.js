@@ -137,12 +137,14 @@ Dispatcher.register(function(payload) {
     },
 
     SEARCHLIST_MODIFY: function() {
-      if (data.checked) {
-        data.movie.watched = false;
-        list.push(data.movie);
-      } else {
-        var index = list.indexOf(data.movie);
-        list.splice(index, 1);
+      if(!data.movie.show){  
+        if (data.checked) {
+          data.movie.watched = false;
+          list.push(data.movie);
+        } else {
+          var index = list.indexOf(data.movie);
+          list.splice(index, 1);
+        }
       }
 
       if(data.movie.show){
@@ -163,7 +165,7 @@ Dispatcher.register(function(payload) {
 
       var user = ''; //hard code user name here
       var type = ''; //hard code list type here
-
+      console.log(data);
       request
         .post('/api/v1/buckets/')
         .send({
@@ -188,7 +190,6 @@ Dispatcher.register(function(payload) {
     CONFIG_GET_URL: function() {
       MovieAPI.getConfig(function(err, res) {
         if (err) return console.log(err);
-        console.log('CONFIG', res);
         var baseUrl = res.images.secure_base_url;
         var imageSize = res.images.poster_sizes[0];
         imageUrl = baseUrl + imageSize;

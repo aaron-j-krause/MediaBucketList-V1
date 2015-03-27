@@ -14,7 +14,7 @@ module.exports = React.createClass({
     return (
       <div>
       <h2>{this.props.name}</h2>
-      <ul>
+      <ul className="searchitemlist">
         {movies}
       </ul>
       </div>

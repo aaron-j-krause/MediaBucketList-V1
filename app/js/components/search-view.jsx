@@ -37,7 +37,7 @@ module.exports = React.createClass({
 
     return (
     <div className="anchorcontainer">
-      <MovieSearch movieData={this.props.movieData} />
+      <MovieSearch movieData={this.props.movieData} searchData={this.props.searchData} />
       {list}
       {filler}
     </div>

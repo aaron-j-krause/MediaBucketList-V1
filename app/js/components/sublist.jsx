@@ -10,7 +10,7 @@ module.exports = React.createClass({
     }.bind(this));
 
     return (
-      <ul>
+      <ul className="searchitemlist">
         {episodeList}
       </ul>
     );

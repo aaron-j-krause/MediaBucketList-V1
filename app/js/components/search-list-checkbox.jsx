@@ -13,6 +13,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    var img;
     var sublist = null;
 
     var movieData = this.props.movieData;
@@ -20,7 +21,9 @@ module.exports = React.createClass({
     var title = movieData.title ? movieData.title : movieData.name;
     var path = movieData.poster_path? movieData.poster_path : movieData.still_path;
     var url = this.props.imageUrl + path;
-    var img = path ? <img alt={title} src={url}/> : '';
+    if (movieData.name.indexOf('Season') === -1){ 
+      img = path ? <img alt={title} src={url}/> : <img src="./img/logo.png" className="defaultimage"></img>;
+    }
     if(this.props.sublist && this.props.sublist[movieData.id]) {
       sublist = <SubList episodes={this.props.sublist[movieData.id]} imageUrl={this.props.imageUrl} />;
     }
