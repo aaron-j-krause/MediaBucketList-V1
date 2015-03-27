@@ -17,6 +17,7 @@ module.exports = React.createClass({
       <div className="centered-navigation" role="banner">
         <div className="centered-navigation-wrapper">
           <nav role="navigation">
+            <div className="mediabucketlist">MediaBucketList</div>
             <ul id="js-centered-navigation-menu" className="centered-navigation-menu">
               <li className="nav-link"><a href="#" onClick={this.handleNav} name="profile">Profile</a></li>
               <li className="nav-link"><a href="#" onClick={this.handleNav} name="lists">Lists</a></li>

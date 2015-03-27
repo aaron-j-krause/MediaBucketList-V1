@@ -16,6 +16,7 @@ module.exports = React.createClass({
     var sublist = null;
 
     var movieData = this.props.movieData;
+    var classType = movieData.title ? 'searchitems' : '';
     var title = movieData.title ? movieData.title : movieData.name;
     var path = movieData.poster_path? movieData.poster_path : movieData.still_path;
     var url = this.props.imageUrl + path;
@@ -24,7 +25,7 @@ module.exports = React.createClass({
       sublist = <SubList episodes={this.props.sublist[movieData.id]} imageUrl={this.props.imageUrl} />;
     }
     return (
-      <div>
+      <div className={classType}>
         {img}
         <label><input name={title} value={title}
           onChange={this.handleChange} type="checkbox"/>{title}<br/></label>

@@ -165,14 +165,6 @@ a[data-reactid] {
 
 .footer {
   color: white;
-
-  .logo {
-  height: 100px;
-  width: 100px;
-  position: absolute;
-  right: -10px;
-  top: -2px;
-  } 
 }
 
 .filler {
@@ -180,11 +172,22 @@ a[data-reactid] {
   width: 100%;
   height: 50%;
   z-index: 1;
+  //position: absolute;
+  //position: fixed;
 }
+
+// .anchorcontainer {
+//   //z-index: 2
+//   //position: relative;
+//   //top: 0;
+// }
 
 .searchitemlist {
   @include outer-container;
   //z-index: 2;
+  position: absolute;
+  top: 200px;
+  left: 150px;
 }
 
 .searchitems {
@@ -196,4 +199,36 @@ a[data-reactid] {
     display: block;
   }
 }
+
+.defaultimage {
+  height: 130px;
+  width: 92px
+}
+
+.mediabucketlist {
+  font-size: 30px;
+  font-weight: bold;
+  position: absolute;
+  left: 60px;
+  top: 8px;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  left: 90px;
+  top: 15px;
+} 
+
+.searchbox {
+  width: 300px;
+}
+
+.button-group-item {
+  //position: absolute;
+  left: 600px;
+  top: 250px;
+}
+
 
