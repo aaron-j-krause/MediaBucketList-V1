@@ -42,7 +42,7 @@ module.exports = React.createClass({
     var movieChecked = this.state.formType === 'Movie' ? 'true' : null;
     var tvShowChecked = this.state.formType !== 'Movie' ? 'true' : null;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="searchBar" onSubmit={this.handleSubmit}>
         <input className="searchbox" type="text" onChange={this.handleChange} value={this.state.name}
           placeholder={placeholder}/>
         <div className="button-group horizontal-spacing">
