@@ -12,6 +12,7 @@ module.exports = React.createClass({
   handleSubmit: function(event) {
     event.preventDefault();
     MovieActions.searchListSaveNew(this.props.searchData);
+    //UserActions.getLists();
   },
 
   render: function() {
