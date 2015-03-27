@@ -5,15 +5,19 @@ var Movie = require('./movie.jsx');
 module.exports = React.createClass({
 
   render: function() {
-    var movies = this.props.listData.map(function(movie) {
+    var listData = this.props.listData;
+    var movies = listData.map(function(movie) {
       return (
         <Movie key={movie.id} movieData={movie} imageData={this.props.imageData}/>
       );
     }.bind(this));
     return (
+      <div>
+      <h2>{this.props.name}</h2>
       <ul>
         {movies}
       </ul>
+      </div>
     );
   }
 });

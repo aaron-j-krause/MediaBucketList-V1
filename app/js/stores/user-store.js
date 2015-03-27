@@ -4,6 +4,7 @@ var constants = require('../constants');
 var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
 var cookies = require('cookies-js');
+var request = require('superagent');
 
 var navView = 'search';
 var signedIn = false;
@@ -46,8 +47,6 @@ Dispatcher.register(function(payload) {
 
   var handlers = {
     USER_SIGN_IN: function() {
-      //data.username = usernamed, data.password = password;
-      console.log('sign in made it', data);
       signedIn = true;
     },
 
@@ -55,12 +54,19 @@ Dispatcher.register(function(payload) {
       console.log(cookies.get('signIn'));
       cookies.set('signIn', false);
       signedIn = false;
-      console.log('SIGN OUT IN STORE');
+    },
+
+    USER_GET_LISTS: function() {
+      var id = 1;
+      var url = '/api/buckets/' + id;
+      request
+        .get(url)
+        .end(function(err, res) {
+          console.log(res);
+        });
     },
 
     USER_CHECK_VALID: function() {
-      //TODO call to check valid user
-      console.log('IN STORE', data);
       if(!data) {
         signedIn = false;
       } else {
@@ -69,7 +75,19 @@ Dispatcher.register(function(payload) {
     },
 
     USER_NAVIGATE: function() {
-      navView = data;
+      if (data === 'lists') {
+      var id = 1;
+      var url = '/api/v1/buckets/' + id;
+      request
+        .get(url)
+        .end(function(err, res) {
+          lists = res.body;
+          navView = data;
+          UserStore.emitChange();
+        });
+      } else {
+        navView = data;
+      }
     }
   };
 

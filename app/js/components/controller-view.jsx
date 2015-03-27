@@ -19,7 +19,7 @@ var getControllerState = function() {
     movieData: MovieStore.getMovies(),
     searchData: MovieStore.getList(),
     listType: MovieStore.getListType(),
-    testList: MovieStore.getTestList(),
+    testList: UserStore.getLists(),
     imageData: MovieStore.getImageData(),
     sublist: MovieStore.getSubList(),
     //user state

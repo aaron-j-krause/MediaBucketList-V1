@@ -13,7 +13,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    console.log('CHECKBOX PROPS', this.props.movieData);
     var sublist = null;
 
     var movieData = this.props.movieData;
