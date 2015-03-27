@@ -20,7 +20,6 @@ if (app.get('env') === 'test') {
   app.use('/api/v1/users', users);
 }
 else {
-  console.log('regular');
   app.use('/api/v1/buckets', authHandler, bucketLists);
   app.use('/api/v1/users', authHandler, users);
 }
