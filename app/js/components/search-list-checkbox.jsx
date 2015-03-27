@@ -21,9 +21,7 @@ module.exports = React.createClass({
     var title = movieData.title ? movieData.title : movieData.name;
     var path = movieData.poster_path? movieData.poster_path : movieData.still_path;
     var url = this.props.imageUrl + path;
-    if (movieData.name.indexOf('Season') === -1){ 
-      img = path ? <img alt={title} src={url}/> : <img src="./img/logo.png" className="defaultimage"></img>;
-    }
+    img = path ? <img alt={title} src={url}/> : <img src="./img/logo.png" className="defaultimage"></img>;
     if(this.props.sublist && this.props.sublist[movieData.id]) {
       sublist = <SubList episodes={this.props.sublist[movieData.id]} imageUrl={this.props.imageUrl} />;
     }
