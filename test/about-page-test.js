@@ -1,5 +1,5 @@
 'use strict';
-
+/* jshint ignore:start */
 var jsdom = require('mocha-jsdom');
 var chai = require('chai');
 var expect = chai.expect;

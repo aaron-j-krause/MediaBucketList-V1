@@ -1,3 +1,4 @@
+'use strict';
 // Based on https://github.com/Khan/react-components/blob/master/test/compiler.js
 var fs = require('fs'),
     ReactTools = require('react-tools'),
@@ -13,7 +14,7 @@ function shouldStub(filename) {
   // Check if the file name ends with any stub path.
   var stubs = global.reactModulesToStub;
   for (var i = 0; i < stubs.length; i++) {
-    if (filename.substr(-stubs[i].length) == stubs[i]) {
+    if (filename.substr(-stubs[i].length) === stubs[i]) {
       return true;
     }
   }

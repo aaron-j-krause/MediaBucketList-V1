@@ -1,3 +1,4 @@
+'use strict';
 // Based on https://github.com/Khan/react-components/blob/master/test/compiler.js
 var transformer = require('./jsx-stub-transform'),
     origJs = require.extensions['.js'];
