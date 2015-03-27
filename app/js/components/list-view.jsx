@@ -10,10 +10,13 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    var movieLists = this.props.listData.map(function(list){
+      return <MovieList name={list.id} listData={list.subjectInfo} imageData={this.props.imageData}/>;
+    }.bind(this));
     return (
       <div>
         <p>THIS IS THE LIST VIEW</p>
-        <MovieList listData={this.props.listData} imageData={this.props.imageData}/>
+        {movieLists}
       </div>
     );
   }
