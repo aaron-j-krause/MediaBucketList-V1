@@ -31,6 +31,6 @@ module.exports = {
   getLists: function() {
     Dispatcher.handleAction({
       actionType: 'USER_GET_LISTS'
-    })
+    });
   }
 };

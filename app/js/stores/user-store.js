@@ -56,18 +56,20 @@ Dispatcher.register(function(payload) {
           user.id = res.body.id;
           user.username = res.body.username;
           request
-            .get('/api/v1/buckets/' + id)
+            .get('/api/v1/buckets/' + user.id)
             .end(function(err, res) {
               lists = res.body;
               signedIn = true;
-            })
+            });
        });
      },
 
     USER_SIGN_OUT: function() {
-      console.log(cookies.get('signIn'));
       cookies.set('signIn', false);
+      cookies.expire('signIn');
+      cookies.expire('username');
       signedIn = false;
+      user = {};
     },
 
     USER_GET_LISTS: function() {
@@ -76,7 +78,7 @@ Dispatcher.register(function(payload) {
       request
         .get(url)
         .end(function(err, res) {
-          lists = res.body
+          lists = res.body;
           UserStore.emitChange();
         });
     },
@@ -104,7 +106,7 @@ Dispatcher.register(function(payload) {
         navView = data;
     }
   }
-}
+};
 
   if (!handlers[actionType]) return true;
 
