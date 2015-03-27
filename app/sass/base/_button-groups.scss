@@ -25,6 +25,8 @@
   $button-group-color-checked: $base-font-color;
   $button-group-border-checked: darken($button-group-background-checked, 15%);
 
+  display: inline-flex;
+  
   input {
     display: none !important;
   }

@@ -25,12 +25,12 @@ module.exports = React.createClass({
       sublist = <SubList episodes={this.props.sublist[movieData.id]} imageUrl={this.props.imageUrl} />;
     }
     return (
-      <div className={classType}>
+      <li className={classType}>
         {img}
         <label><input name={title} value={title}
           onChange={this.handleChange} type="checkbox"/>{title}<br/></label>
         {sublist}
-      </div>
+      </li>
     );
   }
 });
