@@ -43,7 +43,7 @@ describe('app backend testing', function () {
   it('should create a bucket list', function (done) {
     chai.request(server)
       .post('/api/v1/buckets')
-      .send({"userId": "1", "listType": "movie", "subjectId": "1234", "subjectInfo": {"thisIs": "a test1"}})
+      .send({"userId": "1", "listType": "movie", "subjectId": "1234", "subjectName": "the name of subject", "subjectInfo": {"thisIs": "a test1"}})
       .end(function (err, res) {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
@@ -55,7 +55,7 @@ describe('app backend testing', function () {
   it('should update a bucket list', function (done) {
     chai.request(server)
       .put('/api/v1/buckets')
-      .send({"id": "1", "userId": "1", "listType": "movie", "subjectId": "1234", "subjectInfo": {"thisIs": "a test2"}})
+      .send({"id": "1", "userId": "1", "listType": "movie", "subjectId": "1234", "subjectName": "the name of subject", "subjectInfo": {"thisIs": "a test2"}})
       .end(function (err, res) {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
