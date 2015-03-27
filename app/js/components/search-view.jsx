@@ -24,13 +24,19 @@ module.exports = React.createClass({
   },
 
   render: function() {
+  var filler = (
+    <div>
+      <img src="./img/logo.png" className="filler" alt="Logo image"></img>
+    </div>
+  );
   var list = this.props.listType === 'searchlist' ?
     <SearchList movieData={this.props.movieData} searchData={this.props.searchData}
       sublist={this.props.sublist} imageUrl={this.props.imageUrl}/>
     : <AnchorList handleClick={this.handleMovieClick} movieData={this.props.movieData} imageUrl={this.props.imageUrl}/>;
     return (
-    <div>
+    <div className="anchorcontainer">
       <MovieSearch movieData={this.props.movieData} />
+      {filler}
       {list}
     </div>
     );

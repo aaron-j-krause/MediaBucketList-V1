@@ -21,7 +21,7 @@ module.exports = React.createClass({
     }.bind(this));
 
     return (
-      <form name="searchList" onSubmit={this.handleSubmit}>
+      <form name="searchitemlist" onSubmit={this.handleSubmit}>
         {searchItems}
         <input type="submit" value="Make List"/>
       </form>

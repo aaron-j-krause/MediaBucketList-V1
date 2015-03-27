@@ -10,7 +10,7 @@ article.type-system-sans {
   ///////////////////////////////////////////////////////////////////////////////////
   $base-border-radius: 3px !default;
   $base-line-height: 1.5em !default;
-  $base-spacing: 1.5em !default;
+  $base-spacing: 0.5em !default;
   $base-accent-color: #626974 !default;
   $base-link-color: $base-accent-color !default;
   $dark-gray: #333 !default;
@@ -165,9 +165,35 @@ a[data-reactid] {
 
 .footer {
   color: white;
-}
 
-.logo {
+  .logo {
   height: 100px;
   width: 100px;
+  position: absolute;
+  right: -10px;
+  top: -2px;
+  } 
 }
+
+.filler {
+  opacity: 0.1;
+  width: 100%;
+  height: 50%;
+  z-index: 1;
+}
+
+.searchitemlist {
+  @include outer-container;
+  //z-index: 2;
+}
+
+.searchitems {
+  @include span-columns(2);
+  display: inline-block;
+  height: 300px;
+  margin-right: 10px;
+  img {
+    display: block;
+  }
+}
+
