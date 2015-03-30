@@ -1,0 +1,8 @@
+'use strict';
+
+module.exports = {
+  THEMOVIEDB_APIKEY: '26400f42649e18115f28ede7da06e3f5',
+  TWITTER_CONSUMER_KEY: 'o2OtZV510gDpwdlInLyl13k9T',
+  TWITTER_CONSUMER_SECRET: 'WPezqxCwDy163qy5W5jEevN1yGuNs4O97DxH7kHdJHDs3fj5aN',
+  EXPRESS_SESSION_SECRET: 'ieoikdsxdklvnlfvnnsdasjde9320940reiof'
+};
