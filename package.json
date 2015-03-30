@@ -1,11 +1,14 @@
 {
-  "name": "bucketList",
+  "name": "MediaBucketList",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "mocha --compilers .:test/compiler.js test/*test.js",
     "start": "node server.js"
+  },
+  "engines": {
+    "node": "0.12.x"
   },
   "license": "ISC",
   "devDependencies": {
