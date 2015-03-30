@@ -13,7 +13,7 @@ var authHandler = require('./lib/auth/passport.js')(app);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, process.env.WEB_ROOT || 'public')));
 
 if (app.get('env') === 'test') {
   app.use('/api/v1/buckets', bucketLists);
@@ -48,7 +48,7 @@ if (app.get('env') === 'development') {
 if (app.get('env') === 'production') {
   app.use(function (err, req, res, next) {
     res.status(err.status || 500);
-    console.log(err, req);
+    console.log(err);
   });
 }
 
