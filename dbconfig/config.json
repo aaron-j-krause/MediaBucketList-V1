@@ -22,8 +22,11 @@
     }
   },
   "production": {
+    "username": "mediabucketlist",
+    "password": "changemenow",
+    "database": "mediabucketlist-prod",
     "options": {
-      "host": "ec2-23-21-73-32.compute-1.amazonaws.com",
+      "host": "127.0.0.1",
       "port": "5432",
       "dialect": "postgres",
       "logging": false
