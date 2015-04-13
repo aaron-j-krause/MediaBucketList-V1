@@ -3,7 +3,7 @@
 module.exports = exports = {};
 
 var request = require('superagent');
-var constants = require('../../lib/constants');
+var constants = require('../../../lib/constants');
 
 var API_KEY = constants.THEMOVIEDB_APIKEY;
 

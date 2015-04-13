@@ -3,7 +3,7 @@ var Dispatcher = require('../dispatcher/dispatcher');
 var constants = require('../constants');
 var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
-var MovieAPI = require('../../../lib/movie-db/movie-db');
+var MovieAPI = require('../api/movie-db');
 var request = require('superagent');
 
 var movies = [];
