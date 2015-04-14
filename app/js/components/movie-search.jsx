@@ -41,7 +41,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    console.log(this.props.searchData, 'IN MAKE LIST');
     var submitButton = 'Find ' + this.state.formType;
     var placeholder = 'Search by ' + this.state.formType + ' name';
     var movieChecked = this.state.formType === 'Movie' ? 'true' : null;
