@@ -15,9 +15,6 @@ function objectFilter(data, keys, modifiers) {
     entry.mediaType = modifiers.mediaType;
     return _.pick(entry, keys);
   });
-};
-
-function setMediaType(media) {
 }
 
 module.exports = function(media) {
@@ -50,8 +47,8 @@ module.exports = function(media) {
     mod.url = 'still_path';
     mod.mediaType = 'show';
     data = objectFilter(media.episodes, LOCAL_KEYS, mod);
-    console.log('ELIF IN PARSER SSHOW', data);
+    console.log('ELIF IN PARSER SHOW', data);
   }
 
   return media;
-}
+};

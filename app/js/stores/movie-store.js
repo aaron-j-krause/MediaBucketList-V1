@@ -5,6 +5,7 @@ var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
 var MovieAPI = require('../api/movie-db');
 var request = require('superagent');
+var cookies = require('cookies-js');
 
 var movies = [];
 var listType = 'movies';
@@ -162,27 +163,33 @@ Dispatcher.register(function(payload) {
     },
 
     SEARCHLIST_SAVE: function() {
+      var user = cookies.get('username');
+      var type = '';
+      var id;
 
-      var user = ''; //hard code user name here
-      var type = ''; //hard code list type here
-      console.log(data);
       request
-        .post('/api/v1/buckets/')
-        .send({
-          username: user,
-          userId: 1,
-          listType: type,
-          subjectId: '666',
-          subjectInfo: data
-        })
-        .end(function(err, res){
-          console.log('PLEASE WORK DB REQUEST', err, res);
-          testList = data;
-          listType = 'movies';
-          list = [];
-          movies = [];
-          sublist = [];
-          MovieStore.emitChange();
+        .get('/api/v1/users/' + user)
+        .end(function(err, res) {
+          if (err) return console.log(err);
+          id = res.body.id;
+          request
+            .post('/api/v1/buckets/')
+            .send({
+              username: user,
+              userId: id,
+              listType: type,
+              subjectId: '666',
+              subjectInfo: data
+            })
+            .end(function(err) {
+              if (err) return console.log(err);
+              testList = data;
+              listType = 'movies';
+              list = [];
+              movies = [];
+              sublist = [];
+              MovieStore.emitChange();
+            });
         });
 
     },

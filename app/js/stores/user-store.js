@@ -48,7 +48,6 @@ Dispatcher.register(function(payload) {
   var handlers = {
     USER_SIGN_IN: function() {
       var username = cookies.get('username');
-      console.log('USER COOKIE', username);
       var url = '/api/v1/users/' + username;
       request
         .get(url)
