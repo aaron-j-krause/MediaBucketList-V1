@@ -4,7 +4,7 @@ module.exports = exports = {};
 
 var request = require('superagent');
 var constants = require('../../../lib/constants');
-//var parser = require('./api-parser'); uncomment when parser is incorporated
+var parser = require('./api-parser');
 
 var API_KEY = constants.THEMOVIEDB_APIKEY;
 
@@ -15,7 +15,7 @@ function makeRequest(url, query, callback) {
 		.query({query: query})
 		.end(function(err, res) {
 			if (err) return callback(err);
-			//var data = parser(res.body) uncomment when parser is incorporated
+			var data = parser(res.body);
 			callback(null, res.body);
 		});
 }
