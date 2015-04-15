@@ -1,18 +1,21 @@
 'use strict';
 
 var _ = require('lodash');
+
+var LOCAL_KEYS = ['name', 'url', 'id', 'mediaType'];
+
 //takes an array of objects as data and an array of keys
 //returns an array of objects with just the passed in keys
 //and their respective values
-function objectFilter(data, keys, modifiers) {
+function objectFilter(data, keys, modifier) {
   var name;
   var url;
   return _.map(data, function(entry) {
-    name = entry[modifiers.name];
-    url = entry[modifiers.url];
+    name = entry[modifier.name];
+    url = entry[modifier.url];
     entry.name = name;
     entry.url = url;
-    entry.mediaType = modifiers.mediaType;
+    entry.mediaType = modifier.mediaType;
     return _.pick(entry, keys);
   });
 }
@@ -32,10 +35,23 @@ function setMediaType(media) {
   if (media.hasOwnProperty('season_number')) return 'show';
 }
 
+function setModifier(mediaType) {
+  var modifiers = {
+    person: {name: 'name', url: 'profile_path'},
+    movie: {name:'title', url:'poster_path'},
+    series: {name: 'name', url: 'poster_path'},
+    show: {name: 'name', url: 'still_path'}
+  };
+
+  return modifiers[mediaType];
+}
+
 module.exports = function(media) {
+  var mediaType = setMediaType(media);
   console.log('IN PARSER', media);
-  console.log('mediatype function', setMediaType(media));
-  var LOCAL_KEYS = ['name', 'url', 'id', 'mediaType'];
+  console.log('mediatype function', mediaType);
+  console.log('modifier function', setModifier(mediaType));
+
   var mod = {};
   var data;
   if(media.hasOwnProperty('cast')) {
