@@ -26,8 +26,8 @@ function setMediaType(media) {
 
   if (hasCast && !(media.cast[0].hasOwnProperty('title'))) return 'person';
 
-  if ((hasResults && media.results[0].hasOwnProperty('video'))
-    || hasCast) return 'movie';
+  if ((hasResults && media.results[0].hasOwnProperty('video')) ||
+    hasCast) return 'movie';
 
   if (hasResults && media.results[0].hasOwnProperty('first_air_date'))
     return 'series';
@@ -43,52 +43,26 @@ function setModifier(mediaType) {
     show: {name: 'name', url: 'still_path'}
   };
 
-  return modifiers[mediaType];
+  var modifier = modifiers[mediaType];
+  if (modifier) modifier.mediaType = mediaType;
+
+  return modifier;
+}
+
+function setDataSet(media, mediaType) {
+  if (mediaType === 'person') return media.cast;
+  if (mediaType === 'series') return media.results;
+  if (mediaType === 'show') return media.episodes;
+  if (mediaType === 'movie')
+    return media.hasOwnProperty('cast') ? media.cast : media.results;
 }
 
 module.exports = function(media) {
   var mediaType = setMediaType(media);
-  console.log('IN PARSER', media);
-  console.log('mediatype function', mediaType);
-  console.log('modifier function', setModifier(mediaType));
+  var modifier = setModifier(mediaType);
+  var dataSet = setDataSet(media, mediaType);
+  //var parsedData = objectFilter(dataSet, LOCAL_KEYS, modifier);
 
-  var mod = {};
-  var data;
-  if(media.hasOwnProperty('cast')) {
-    if (media.cast[0] && !(media.cast[0].hasOwnProperty('title'))) {
-      mod.name = 'name';
-      mod.url = 'profile_path';
-      mod.mediaType = 'person';
-      data = objectFilter(media.cast, LOCAL_KEYS, mod);
-    } else {
-      mod.name = 'title';
-      mod.url = 'poster_path';
-      mod.mediaType = 'movie';
-      data = objectFilter(media.cast, LOCAL_KEYS, mod);
-
-    }
-    console.log('IF IN PARSER CAST', data);
-  } else if (media.results && media.results.length &&
-      media.results[0].hasOwnProperty('video')) {
-    mod.name = 'title';
-    mod.url = 'poster_path';
-    mod.mediaType = 'movie';
-    data = objectFilter(media.results, LOCAL_KEYS, mod);
-    console.log('ELIF IN PARSER MOVIE', data);
-  } else if (media.results && media.results.length && 
-      media.results[0].hasOwnProperty('first_air_date')) {
-    mod.name = 'name';
-    mod.url = 'poster_path';
-    mod.mediaType = 'series';
-    data = objectFilter(media.results, LOCAL_KEYS, mod);
-    console.log('ELIF IN PARSER SERIES', data);
-  } else if (media.hasOwnProperty('season_number')) {
-    mod.name = 'name';
-    mod.url = 'still_path';
-    mod.mediaType = 'show';
-    data = objectFilter(media.episodes, LOCAL_KEYS, mod);
-    console.log('ELIF IN PARSER SHOW', data);
-  }
 
   return media;
 };
