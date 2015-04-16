@@ -1,8 +1,10 @@
 'use strict';
+//this module exports a function that normalizes the data coming in from the
+//api to all be an object {name, url, id, mediaType}
 
 var _ = require('lodash');
 
-var LOCAL_KEYS = ['name', 'url', 'id', 'mediaType'];
+var LOCAL_KEYS = ['name', 'url', 'id', 'seasons', 'mediaType'];
 
 //takes an array of objects as data and an array of keys
 //returns an array of objects with just the passed in keys
@@ -20,6 +22,7 @@ function objectFilter(data, keys, modifier) {
   });
 }
 
+//sets a mediaType attribut based on certain keys
 function setMediaType(media) {
   var hasResults = media.hasOwnProperty('results') && media.results.length;
   var hasCast = media.hasOwnProperty('cast') && media.cast.length;
@@ -35,6 +38,7 @@ function setMediaType(media) {
   if (media.hasOwnProperty('season_number')) return 'show';
 }
 
+//creates map to normalize keys on incoming API objects
 function setModifier(mediaType) {
   var modifiers = {
     person: {name: 'name', url: 'profile_path'},
@@ -48,7 +52,7 @@ function setModifier(mediaType) {
 
   return modifier;
 }
-
+//makes sure just an array of objects is sent back and not any search header
 function setDataSet(media, mediaType) {
   if (mediaType === 'person') return media.cast;
   if (mediaType === 'series') return media.results;
@@ -61,8 +65,6 @@ module.exports = function(media) {
   var mediaType = setMediaType(media);
   var modifier = setModifier(mediaType);
   var dataSet = setDataSet(media, mediaType);
-  //var parsedData = objectFilter(dataSet, LOCAL_KEYS, modifier);
-
-
-  return media;
+  var parsedData = objectFilter(dataSet, LOCAL_KEYS, modifier);
+  return parsedData;
 };

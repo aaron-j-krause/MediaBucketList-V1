@@ -8,18 +8,15 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var title;
     var img;
-    var path;
     var imageUrl = this.props.imageUrl;
     var links = this.props.movieData.map(function(movie) {
-      title = movie.title ? 'title' : 'name';
-      path = movie.poster_path ? movie.poster_path : movie.profile_path;
-      img = path ? <img alt={title} src={imageUrl + path}/> : <img src="./img/logo.png" className="defaultimage"></img>;
+      img = movie.url ? <img alt={movie.name} src={imageUrl + movie.url}/> :
+        <img src="./img/logo.png" className="defaultimage"></img>;
       return (
         <li className="searchitems" key={movie.id}>
           {img}
-          <a name={movie.id} href="#" onClick={this.props.handleClick}>{movie[title]}</a>
+          <a name={movie.id} href="#" onClick={this.props.handleClick}>{movie.name}</a>
         </li>
       );
     }.bind(this));
