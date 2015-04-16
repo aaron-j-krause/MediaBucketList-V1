@@ -2,7 +2,8 @@
 var React = require('react');
 var MovieActions = require('../actions/movie-actions');
 
-module.exports = React.createClass({
+//child of SearchView
+var MovieSearch = React.createClass({
   getInitialState: function() {
     return {
       name: '',
@@ -68,3 +69,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = MovieSearch;

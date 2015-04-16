@@ -10,10 +10,12 @@ var HomeContent = React.createClass({
       </div>
     );
     return (
-      <p>
-        Come back you fool!
+      <main>
+        <p>
+          Come back you fool!
+        </p>
         {filler}
-      </p>
+      </main>
     );
   }
 });
