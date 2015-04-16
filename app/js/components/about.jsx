@@ -1,7 +1,8 @@
 'use strict';
 var React = require('react');
 
-module.exports = React.createClass({
+//child of HomeView
+var About = React.createClass({
   render: function() {
     return (
       <p>
@@ -11,3 +12,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = About;

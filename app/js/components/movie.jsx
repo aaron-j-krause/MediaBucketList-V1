@@ -1,7 +1,8 @@
 'use strict';
 var React = require('react');
 
-module.exports = React.createClass({
+//child of MovieList
+var Movie = React.createClass({
   render: function() {
     var imageData = this.props.imageData;
     var movieData = this.props.movieData;
@@ -17,3 +18,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = Movie;

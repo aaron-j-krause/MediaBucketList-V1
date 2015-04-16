@@ -2,7 +2,8 @@
 var React = require('react');
 var MovieActions = require('../actions/movie-actions');
 
-module.exports = React.createClass({
+//child of Sublist
+var EpisodeCheckbox = React.createClass({
   handleChange: function(event) {
     var payload = {
       movie: this.props.showData,
@@ -24,3 +25,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = EpisodeCheckbox;

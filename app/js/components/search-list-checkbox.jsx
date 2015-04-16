@@ -3,7 +3,8 @@ var React = require('react');
 var MovieActions = require('../actions/movie-actions');
 var SubList = require('./sublist.jsx');
 
-module.exports = React.createClass({
+//child of SearchList
+var SearchListCheckbox = React.createClass({
   handleChange: function(event) {
     var payload = {
       movie: this.props.movieData,
@@ -34,3 +35,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = SearchListCheckbox;

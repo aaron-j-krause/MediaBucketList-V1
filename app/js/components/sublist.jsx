@@ -2,7 +2,8 @@
 var React = require('react');
 var EpisodeCheckbox = require('./episode-checkbox.jsx');
 
-module.exports = React.createClass({
+//child of SearchListCheckbox
+var Sublist = React.createClass({
   render: function() {
     var episodes = this.props.episodes;
     var episodeList = episodes.map(function(episode) {
@@ -16,3 +17,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = Sublist;

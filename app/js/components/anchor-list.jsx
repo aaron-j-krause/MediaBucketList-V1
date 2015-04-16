@@ -2,7 +2,8 @@
 var React = require('react');
 var UserActions = require('../actions/user-actions');
 
-module.exports = React.createClass({
+//child of SearchView
+var AnchorList = React.createClass({
   componentDidMount: function() {
     UserActions.isValid(true);
   },
@@ -28,3 +29,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = AnchorList;

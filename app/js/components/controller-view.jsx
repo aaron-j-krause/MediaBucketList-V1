@@ -30,7 +30,7 @@ var getControllerState = function() {
   };
 };
 
-module.exports = React.createClass({
+var ControllerView = React.createClass({
   getInitialState: function() {
     return getControllerState();
   },
@@ -79,3 +79,6 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = ControllerView;
+
