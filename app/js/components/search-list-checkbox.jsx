@@ -3,7 +3,8 @@ var React = require('react');
 var MovieActions = require('../actions/movie-actions');
 var SubList = require('./sublist.jsx');
 
-module.exports = React.createClass({
+//child of SearchList
+var SearchListCheckbox = React.createClass({
   handleChange: function(event) {
     var payload = {
       movie: this.props.movieData,
@@ -13,25 +14,26 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var img;
-    var sublist = null;
-
     var movieData = this.props.movieData;
-    var classType = movieData.title ? 'searchitems' : '';
-    var title = movieData.title ? movieData.title : movieData.name;
-    var path = movieData.poster_path? movieData.poster_path : movieData.still_path;
-    var url = this.props.imageUrl + path;
-    img = path ? <img alt={title} src={url}/> : <img src="./img/logo.png" className="defaultimage"></img>;
+    var sublist = null;
+    var classType = movieData.mediaType === 'seasonHeader' ? '' : 'searchitems';
+    var url = this.props.imageUrl + movieData.url;
+    var img = movieData.url ? <img alt={movieData.name} src={url}/> :
+      <img src="./img/logo.png" className="defaultimage"></img>;
+
     if(this.props.sublist && this.props.sublist[movieData.id]) {
       sublist = <SubList episodes={this.props.sublist[movieData.id]} imageUrl={this.props.imageUrl} />;
     }
+
     return (
       <li className={classType}>
         {img}
-        <label><input name={title} value={title}
-          onChange={this.handleChange} type="checkbox"/>{title}<br/></label>
+        <label><input name={movieData.name} value={movieData.name}
+          onChange={this.handleChange} type="checkbox"/>{movieData.name}<br/></label>
         {sublist}
       </li>
     );
   }
 });
+
+module.exports = SearchListCheckbox;

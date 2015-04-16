@@ -1,7 +1,8 @@
 'use strict';
 var React = require('react');
 
-module.exports = React.createClass({
+//child of HomeView
+var HomeContent = React.createClass({
   render: function() {
   	var filler = (
       <div>
@@ -9,10 +10,14 @@ module.exports = React.createClass({
       </div>
     );
     return (
-      <p>
-        Come back you fool!
+      <main>
+        <p>
+          Come back you fool!
+        </p>
         {filler}
-      </p>
+      </main>
     );
   }
 });
+
+module.exports = HomeContent;

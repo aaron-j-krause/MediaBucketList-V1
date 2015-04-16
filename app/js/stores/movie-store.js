@@ -69,7 +69,7 @@ Dispatcher.register(function(payload) {
     MOVIE_GET_BY_NAME: function() {
       MovieAPI.searchMoviesByName(data, function(err, res) {
         if (err) return console.log(err);
-        movies = res.results;
+        movies = res;
         MovieStore.emitChange();
       });
     },
@@ -78,7 +78,7 @@ Dispatcher.register(function(payload) {
       MovieAPI.searchByMovieId(data, function(err, res) {
         if (err) return console.log(err);
         listType = 'actors';
-        movies = res.cast;
+        movies = res;
         MovieStore.emitChange();
       });
     },
@@ -86,7 +86,7 @@ Dispatcher.register(function(payload) {
     MOVIE_GET_BY_PERSON_ID: function() {
       MovieAPI.searchByPersonId(data, function(err, res) {
         if (err) return console.log(err);
-        movies = res.cast;
+        movies = res;
         listType = 'searchlist';
         MovieStore.emitChange();
       });
@@ -95,7 +95,7 @@ Dispatcher.register(function(payload) {
     PERSON_GET_BY_NAME: function() {
       MovieAPI.searchByPeople(data, function(err, res) {
         if (err) return console.log(err);
-        movies = res.results;
+        movies = res;
         MovieStore.emitChange();
       });
     },
@@ -103,7 +103,7 @@ Dispatcher.register(function(payload) {
     TV_GET_BY_NAME: function() {
       MovieAPI.searchTvShowsByName(data, function(err, res) {
         if (err) return console.log(err);
-        movies = res.results;
+        movies = res;
         listType = 'tv';
         MovieStore.emitChange();
       });
@@ -122,7 +122,7 @@ Dispatcher.register(function(payload) {
               },
               name: 'Season ' + i,
               id: i,
-              watched: false
+              mediaType: 'seasonHeader'
             });
           }
           listType = 'searchlist';
@@ -153,7 +153,7 @@ Dispatcher.register(function(payload) {
         var seasonNumber = data.movie.id;
         MovieAPI.searchByTvSeason(show, seasonNumber, function(err, res) {
           if(err) return console.log(err);
-          sublist[seasonNumber] = res.episodes;
+          sublist[seasonNumber] = res;
           MovieStore.emitChange();
         });
 
@@ -164,9 +164,8 @@ Dispatcher.register(function(payload) {
 
     SEARCHLIST_SAVE: function() {
       var user = cookies.get('username');
-      var type = '';
+      var type = data[0] ? data[0].mediaType : '';
       var id;
-
       request
         .get('/api/v1/users/' + user)
         .end(function(err, res) {

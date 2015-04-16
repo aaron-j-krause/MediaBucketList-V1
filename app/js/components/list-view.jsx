@@ -4,7 +4,8 @@ var React = require('react');
 var UserActions = require('../actions/user-actions');
 var MovieList = require('./movie-list.jsx');
 
-module.exports = React.createClass({
+//child of ControllerView
+var ListView = React.createClass({
   componentDidMount: function() {
     UserActions.isValid(this.props.signedIn);
   },
@@ -20,3 +21,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = ListView;

@@ -2,7 +2,7 @@
 var React = require('react');
 var UserActions = require('../actions/user-actions');
 
-module.exports = React.createClass({
+var ProfileView = React.createClass({
   componentDidMount: function() {
     UserActions.isValid(this.props.signedIn);
   },
@@ -20,3 +20,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = ProfileView;

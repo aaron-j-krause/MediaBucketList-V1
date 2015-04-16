@@ -6,7 +6,8 @@ var MovieSearch = require('./movie-search.jsx');
 var AnchorList = require('./anchor-list.jsx');
 var SearchList = require('./search-list.jsx');
 
-module.exports = React.createClass({
+//child of ControllerView
+var SearchView = React.createClass({
   handleMovieClick: function(event) {
     event.preventDefault();
 
@@ -44,3 +45,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = SearchView;

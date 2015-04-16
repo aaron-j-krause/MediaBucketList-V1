@@ -1,7 +1,8 @@
 'use strict';
 var React = require('react');
 
-module.exports = React.createClass({
+//child of ControllerView
+var Footer = React.createClass({
   render: function() {
     return (
     	<div>	
@@ -32,3 +33,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = Footer;

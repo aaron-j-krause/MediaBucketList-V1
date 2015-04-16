@@ -1,4 +1,6 @@
 'use strict';
+//run tests with npm test
+
 /* jshint ignore:start */
 var jsdom = require('mocha-jsdom');
 var chai = require('chai');

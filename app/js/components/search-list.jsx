@@ -3,7 +3,8 @@ var React = require('react');
 var SearchListCheckbox = require('./search-list-checkbox.jsx');
 var UserActions = require('../actions/user-actions');
 
-module.exports = React.createClass({
+//child of SearchView
+var SearchList = React.createClass({
   componentDidMount: function() {
     UserActions.isValid(true);
   },
@@ -21,3 +22,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = SearchList;

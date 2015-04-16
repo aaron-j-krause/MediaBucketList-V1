@@ -2,7 +2,8 @@
 var React = require('react');
 var UserActions = require('../actions/user-actions');
 
-module.exports = React.createClass({
+//child of ControllerView
+var UserNav = React.createClass({
   handleClick: function() {
     UserActions.signOut();
   },
@@ -29,3 +30,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = UserNav;

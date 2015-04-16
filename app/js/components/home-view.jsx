@@ -1,10 +1,9 @@
 'use strict';
 var React = require('react');
-var SignIn = require('./sign-in.jsx');
 var About = require('./about.jsx');
 var HomeContent = require('./home-content.jsx');
 
-module.exports = React.createClass({
+var HomeView = React.createClass({
   getInitialState: function() {
     return {
       view: 'home'
@@ -26,7 +25,7 @@ module.exports = React.createClass({
               <ul className="centered-navigation-menu">
                 <li className="nav-link"><a href="#" onClick={this.handleClick} name="home">Home</a></li>
                 <li className="nav-link"><a href="#" onClick={this.handleClick} name="about">About</a></li>
-                <li className="nav-link"><SignIn /></li>
+                <li className="nav-link"><a href="/auth/twitter">Sign In With Twitter</a></li>
               </ul>
             </nav>
           </div>
@@ -36,3 +35,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = HomeView;

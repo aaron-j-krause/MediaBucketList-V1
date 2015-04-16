@@ -2,7 +2,8 @@
 var React = require('react');
 var Movie = require('./movie.jsx');
 
-module.exports = React.createClass({
+//child of ListView
+var MovieList = React.createClass({
 
   render: function() {
     var listData = this.props.listData;
@@ -21,3 +22,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = MovieList;
