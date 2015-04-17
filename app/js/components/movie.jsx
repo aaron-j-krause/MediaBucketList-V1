@@ -3,6 +3,11 @@ var React = require('react');
 
 //child of MovieList
 var Movie = React.createClass({
+
+  handleChange: function() {
+    
+  },
+
   render: function() {
     var imageData = this.props.imageData;
     var movieData = this.props.movieData;
@@ -13,7 +18,7 @@ var Movie = React.createClass({
       <div className="searchitems">
         {imgTag}
         <li>{movieData.name}</li>
-        <input type="checkbox"/>
+        <input type="checkbox" onChange={this.handleChange}/>
       </div>
     );
   }

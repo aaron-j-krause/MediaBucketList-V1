@@ -166,6 +166,7 @@ Dispatcher.register(function(payload) {
       var user = cookies.get('username');
       var type = data[0] ? data[0].mediaType : '';
       var id;
+
       request
         .get('/api/v1/users/' + user)
         .end(function(err, res) {
@@ -193,6 +194,14 @@ Dispatcher.register(function(payload) {
 
     },
 
+    PROFILE_LIST_MODIFY: function() {
+
+    },
+
+    PROFILE_LIST_SAVE: function() {
+
+    },
+
     CONFIG_GET_URL: function() {
       MovieAPI.getConfig(function(err, res) {
         if (err) return console.log(err);
@@ -201,7 +210,7 @@ Dispatcher.register(function(payload) {
         imageUrl = baseUrl + imageSize;
         MovieStore.emitChange();
       });
-    }
+    },
   };
 
   if (!handlers[actionType]) return true;
