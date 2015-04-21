@@ -138,7 +138,7 @@ Dispatcher.register(function(payload) {
     },
 
     SEARCHLIST_MODIFY: function() {
-      if(!data.movie.show){  
+      if(!data.movie.show){
         if (data.checked) {
           data.movie.watched = false;
           list.push(data.movie);
