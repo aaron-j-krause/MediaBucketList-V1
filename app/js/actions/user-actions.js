@@ -32,5 +32,18 @@ module.exports = {
     Dispatcher.handleAction({
       actionType: 'USER_GET_LISTS'
     });
-  }
+  },
+  profileListSave: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'PROFILE_LIST_SAVE',
+      data: data
+    });
+  },
+
+  profileListModify: function(data) {
+    Dispatcher.handleAction({
+      actionType: 'PROFILE_LIST_MODIFY',
+      data: data
+    });
+  },
 };

@@ -138,7 +138,7 @@ Dispatcher.register(function(payload) {
     },
 
     SEARCHLIST_MODIFY: function() {
-      if(!data.movie.show){  
+      if(!data.movie.show){
         if (data.checked) {
           data.movie.watched = false;
           list.push(data.movie);
@@ -166,6 +166,7 @@ Dispatcher.register(function(payload) {
       var user = cookies.get('username');
       var type = data[0] ? data[0].mediaType : '';
       var id;
+
       request
         .get('/api/v1/users/' + user)
         .end(function(err, res) {
@@ -190,7 +191,6 @@ Dispatcher.register(function(payload) {
               MovieStore.emitChange();
             });
         });
-
     },
 
     CONFIG_GET_URL: function() {
@@ -201,7 +201,7 @@ Dispatcher.register(function(payload) {
         imageUrl = baseUrl + imageSize;
         MovieStore.emitChange();
       });
-    }
+    },
   };
 
   if (!handlers[actionType]) return true;

@@ -11,6 +11,7 @@ var signedIn = false;
 var lists = [];
 var user = {};
 
+
 var UserStore = _.assign({}, EventEmitter.prototype, {
   getSignedIn: function() {
     return signedIn;
@@ -59,6 +60,7 @@ Dispatcher.register(function(payload) {
             .end(function(err, res) {
               lists = res.body;
               signedIn = true;
+              UserStore.emitChange();
             });
        });
      },
@@ -69,6 +71,7 @@ Dispatcher.register(function(payload) {
       cookies.expire('username');
       signedIn = false;
       user = {};
+      UserStore.emitChange();
     },
 
     USER_GET_LISTS: function() {
@@ -82,12 +85,39 @@ Dispatcher.register(function(payload) {
         });
     },
 
+    PROFILE_LIST_MODIFY: function() {
+      lists.forEach(function(list) {
+        if (list.id === data.listId) {
+          list.subjectInfo.forEach(function(movie) {
+            if (movie.id === data.id) {
+              movie.watched = data.watched;
+              return;
+            }
+          });
+        }
+      });
+      UserStore.emitChange();
+    },
+
+    PROFILE_LIST_SAVE: function() {
+      request
+        .put('/api/v1/buckets/')
+        .send({
+          id: data.listId,
+          subjectInfo: data.listData
+        })
+        .end(function() {
+          UserStore.emitChange();
+        });
+    },
+
     USER_CHECK_VALID: function() {
       if(!data) {
         signedIn = false;
       } else {
         signedIn = true;
       }
+      UserStore.emitChange();
     },
 
     USER_NAVIGATE: function() {
@@ -103,6 +133,7 @@ Dispatcher.register(function(payload) {
         });
       } else {
         navView = data;
+        UserStore.emitChange();
     }
   }
 };
@@ -110,7 +141,6 @@ Dispatcher.register(function(payload) {
   if (!handlers[actionType]) return true;
 
   handlers[actionType]();
-  UserStore.emitChange();
 
   return true;
 });
