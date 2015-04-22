@@ -194,13 +194,23 @@ Dispatcher.register(function(payload) {
 
     },
 
-    PROFILE_LIST_MODIFY: function() {
+    // PROFILE_LIST_MODIFY: function() {
+    //   console.log('in store FOR MODIFY', list, data);
+    // },
 
-    },
-
-    PROFILE_LIST_SAVE: function() {
-
-    },
+    // PROFILE_LIST_SAVE: function() {
+    //   console.log('in store', data);
+    //   // request
+    //   //   .put('/api/v1/buckets/')
+    //   //   .send({
+    //   //     id: data.listId,
+    //   //     subjectInfo: data.listInfo
+    //   //   })
+    //   //   .end(function(err, res) {
+    //   //     console.log(err, res.body);
+    //   //     console.log('MAAAADE IT');
+    //   //   })
+    // },
 
     CONFIG_GET_URL: function() {
       MovieAPI.getConfig(function(err, res) {

@@ -12,6 +12,8 @@ module.exports = keyMirror({
   TV_GET_BY_ID: null,
   SEARCHLIST_MODIFY: null,
   SEARCHLIST_SAVE: null,
+  PROFILE_LIST_SAVE: null,
+  PROFILE_LIST_MODIFY: null,
   TEST_ACTION: null,
   CONFIG_GET_URL: null,
   //user constants

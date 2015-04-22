@@ -11,6 +11,7 @@ var signedIn = false;
 var lists = [];
 var user = {};
 
+
 var UserStore = _.assign({}, EventEmitter.prototype, {
   getSignedIn: function() {
     return signedIn;
@@ -80,6 +81,34 @@ Dispatcher.register(function(payload) {
           lists = res.body;
           UserStore.emitChange();
         });
+    },
+
+    PROFILE_LIST_MODIFY: function() {
+      console.log('in USER store FOR MODIFY', lists, data);
+      lists.forEach(function(list) {
+        if (list.id === data.listId) {
+          list.subjectInfo.forEach(function(movie) {
+            if (movie.id === data.id) {
+              movie.watched = data.watched;
+              return
+            }
+          });
+        }
+      })
+    },
+
+    PROFILE_LIST_SAVE: function() {
+      console.log('in USER store', data);
+      request
+        .put('/api/v1/buckets/')
+        .send({
+          id: data.listId,
+          subjectInfo: data.listData
+        })
+        .end(function(err, res) {
+          console.log(err, res.body);
+          console.log('MAAAADE IT');
+        })
     },
 
     USER_CHECK_VALID: function() {
