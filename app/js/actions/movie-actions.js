@@ -72,20 +72,6 @@ module.exports = {
     });
   },
 
-  profileListSave: function(data) {
-    Dispatcher.handleAction({
-      actionType: 'PROFILE_LIST_SAVE',
-      data: data
-    });
-  },
-
-  profileListModify: function(data) {
-    Dispatcher.handleAction({
-      actionType: 'PROFILE_LIST_MODIFY',
-      data: data
-    });
-  },
-
   getConfig: function(data) {
     Dispatcher.handleAction({
       actionType: 'CONFIG_GET_URL',

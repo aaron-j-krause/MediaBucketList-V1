@@ -60,6 +60,7 @@ Dispatcher.register(function(payload) {
             .end(function(err, res) {
               lists = res.body;
               signedIn = true;
+              UserStore.emitChange();
             });
        });
      },
@@ -70,6 +71,7 @@ Dispatcher.register(function(payload) {
       cookies.expire('username');
       signedIn = false;
       user = {};
+      UserStore.emitChange();
     },
 
     USER_GET_LISTS: function() {
@@ -84,31 +86,29 @@ Dispatcher.register(function(payload) {
     },
 
     PROFILE_LIST_MODIFY: function() {
-      console.log('in USER store FOR MODIFY', lists, data);
       lists.forEach(function(list) {
         if (list.id === data.listId) {
           list.subjectInfo.forEach(function(movie) {
             if (movie.id === data.id) {
               movie.watched = data.watched;
-              return
+              return;
             }
           });
         }
-      })
+      });
+      UserStore.emitChange();
     },
 
     PROFILE_LIST_SAVE: function() {
-      console.log('in USER store', data);
       request
         .put('/api/v1/buckets/')
         .send({
           id: data.listId,
           subjectInfo: data.listData
         })
-        .end(function(err, res) {
-          console.log(err, res.body);
-          console.log('MAAAADE IT');
-        })
+        .end(function() {
+          UserStore.emitChange();
+        });
     },
 
     USER_CHECK_VALID: function() {
@@ -117,6 +117,7 @@ Dispatcher.register(function(payload) {
       } else {
         signedIn = true;
       }
+      UserStore.emitChange();
     },
 
     USER_NAVIGATE: function() {
@@ -132,6 +133,7 @@ Dispatcher.register(function(payload) {
         });
       } else {
         navView = data;
+        UserStore.emitChange();
     }
   }
 };
@@ -139,7 +141,6 @@ Dispatcher.register(function(payload) {
   if (!handlers[actionType]) return true;
 
   handlers[actionType]();
-  UserStore.emitChange();
 
   return true;
 });

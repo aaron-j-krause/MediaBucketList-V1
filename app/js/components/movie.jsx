@@ -1,14 +1,14 @@
 'use strict';
 var React = require('react');
-var UserActions= require('../actions/user-actions')
+var UserActions= require('../actions/user-actions');
 
 //child of MovieList
 var Movie = React.createClass({
   getInitialState: function(){
-    return {watched: this.props.movieData.watched}
+    return {watched: this.props.movieData.watched};
   },
 
-  handleChange: function(event) {
+  handleChange: function() {
     var invertWatched = !(this.state.watched);
     var movieData = this.props.movieData;
     this.setState({watched: invertWatched});
